@@ -5,5 +5,15 @@ export const StyledActivityBar = styled.div`
   padding: 20px;
   height: 90px;
   background-color: #000;
-  border: 2px royalblue solid;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .avatar {
+    height: 60px;
+    width: 60px;
+    border-radius: 10px;
+    background-position: center;
+    background-size: cover;
+  }
 `;

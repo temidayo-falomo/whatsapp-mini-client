@@ -17,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
 
   .App {
     overflow: hidden;
+    background-color: #000;
   }
 
   a {
@@ -76,6 +77,10 @@ const GlobalStyle = createGlobalStyle`
 
   .pointer {
     cursor: pointer;
+  }
+
+  .cap {
+    text-transform: capitalize;
   }
 `;
 export default GlobalStyle;

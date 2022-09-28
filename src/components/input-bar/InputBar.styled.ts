@@ -2,20 +2,26 @@ import styled from "styled-components";
 
 export const StyledInputBar = styled.div`
   width: 100%;
-  border: 2px royalblue solid;
   background-color: black;
   padding: 20px;
   height: 70px;
   margin-top: 1rem;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   font-size: 2rem;
   align-items: center;
   gap: 2rem;
+  position: relative;
+
+  .emojis {
+    position: absolute;
+    bottom: 80px;
+    left: 1rem;
+  }
 
 
   input {
-    width: 90%;
+    width: 100%;
     padding: 15px 20px;
     background-color: ghostwhite;
     border-radius: 10px;

@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import ActivityBar from "../../activity-bar/ActivityBar";
 import { StyledDashboardRight } from "./DashboardRight.styled";
-import bgg from "./bg.svg";
 import Messages from "../text-messages/Messages";
 import InputBar from "../../input-bar/InputBar";
 

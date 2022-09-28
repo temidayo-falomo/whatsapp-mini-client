@@ -1,5 +1,5 @@
 import { signInWithPopup } from "firebase/auth";
-import { addDoc, collection, doc, setDoc } from "firebase/firestore";
+import { doc, setDoc } from "firebase/firestore";
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, db, provider } from "../../firebase/firebase-config";
@@ -9,8 +9,6 @@ import { StyledLogin } from "./Login.styled";
 function Login() {
   const { setIsAuth } = useContext(AppContext);
   const navigate = useNavigate();
-
-  const usersCollectionRef = collection(db, "users");
 
   const signInWithGoogle = async () => {
     signInWithPopup(auth, provider)
@@ -29,6 +27,7 @@ function Login() {
               light: true,
             },
           ],
+          statusUploads: [],
         });
 
         navigate("/");

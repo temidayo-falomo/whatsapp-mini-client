@@ -4,6 +4,7 @@ export const StyledDashboardLeft = styled.div`
   background-color: #000;
   color: #fff;
   position: relative;
+  border-right: 1px rgb(43, 42, 42) solid;
 
   .top {
     display: flex;
@@ -16,7 +17,6 @@ export const StyledDashboardLeft = styled.div`
     width: 50px;
     border-radius: 50%;
     border: 2px royalblue solid;
-    background-image: url("https://images.unsplash.com/photo-1557053910-d9eadeed1c58?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8d29tYW4lMjBwb3J0cmFpdHxlbnwwfHwwfHw%3D&w=1000&q=80");
     background-position: center;
     background-size: cover;
   }
@@ -57,7 +57,7 @@ export const StyledDashboardLeft = styled.div`
       min-width: 70px;
       border: 2px royalblue solid;
       border-radius: 50%;
-      background-color: black;
+      background-color: rebeccapurple;
     }
   }
 
@@ -67,6 +67,12 @@ export const StyledDashboardLeft = styled.div`
     flex-direction: column;
     gap: 1rem;
     padding: 0 20px;
+  }
+
+  .card-active {
+    /* border: 2px white solid; */
+    border-radius: 10px;
+    background-color: royalblue;
   }
 
   .chat-circle {
