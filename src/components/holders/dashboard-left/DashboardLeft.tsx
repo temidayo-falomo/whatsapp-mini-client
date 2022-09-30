@@ -11,7 +11,9 @@ import {
   getDoc,
   getDocs,
   onSnapshot,
+  query,
   updateDoc,
+  where,
 } from "firebase/firestore";
 import { auth, db } from "../../../firebase/firebase-config";
 import { Link } from "react-router-dom";
@@ -24,12 +26,18 @@ function DashboardLeft() {
     setFriendImg,
     setFriendName,
     setDisplayDelete,
+    setAllMessages,
+    newMsg1,
+    newMsg2,
+    setNewMsg1,
+    setNewMsg2,
   } = useContext(AppContext);
 
   const [friendsList, setFriendsList] = useState<any>();
   const [friendsCards, setFriendsCards] = useState<any>([]);
   const [number, setNumber] = useState("disp");
 
+  // users collection
   const usersCollectionRef = collection(db, "users");
 
   const getAllUsers = async () => {
@@ -73,6 +81,8 @@ function DashboardLeft() {
     paramIndex: any
   ) => {
     setFriendId(paramId);
+    // console.log(paramId, "hello");
+
     setFriendImg(paramImg);
     setFriendName(paramName);
     setNumber(paramIndex);
@@ -85,12 +95,47 @@ function DashboardLeft() {
 
   useEffect(() => {
     const id: any = auth.currentUser?.uid;
-    console.log(id);
-
     const docRef = doc(db, "users", id);
     onSnapshot(docRef, (doc) => {
       setFriendsCards(doc.data()?.friends);
     });
+  }, []);
+
+  // messages collection
+  const colRef = collection(db, "messages");
+
+  useEffect(() => {
+    // queries
+    const q = query(colRef, where("senderId", "==", auth.currentUser?.uid));
+
+    const q2 = query(colRef, where("receiverId", "==", auth.currentUser?.uid));
+
+    // realtime collection's data
+    onSnapshot(q, (snapshot) => {
+      const posts1 = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+      setNewMsg1(posts1);
+    });
+
+    onSnapshot(q2, (snapshot) => {
+      const posts2 = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+
+      setNewMsg2(posts2);
+    });
+  }, []);
+
+  useEffect(() => {
+    setAllMessages(
+      [...newMsg1, ...newMsg2].sort(
+        (a: any, b: any) => a.timestamp - b.timestamp
+      )
+    );
   }, []);
 
   return (

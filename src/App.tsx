@@ -14,7 +14,7 @@ function App() {
 
   //
 
-  const [friendId, setFriendId] = useState();
+  const [friendId, setFriendId] = useState("");
   const [friendImg, setFriendImg] = useState();
   const [friendName, setFriendName] = useState();
 
@@ -24,7 +24,7 @@ function App() {
 
   //
 
-  const [allMessages, setAllMessages] = useState();
+  const [allMessages, setAllMessages] = useState([]);
   const [users, setUsers] = useState();
   const [allStatus, setAllStatus] = useState([]);
   const [statusByUser, setStatusByUser] = useState([]);
@@ -35,6 +35,8 @@ function App() {
   const [displayStatus, setDisplayStatus] = useState(false);
 
   //
+
+  const [filteredStatuses, setFilteredStatuses] = useState("");
 
   const [colors, setColors] = useState([
     "orange",
@@ -48,6 +50,9 @@ function App() {
   ]);
 
   const [fonts, setFonts] = useState(["sans-serif", "lato", "poppins"]);
+
+  const [newMsg1, setNewMsg1] = useState([]);
+  const [newMsg2, setNewMsg2] = useState([]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -88,6 +93,12 @@ function App() {
         setDisplayStatus,
         statusByUser,
         setStatusByUser,
+        newMsg1,
+        newMsg2,
+        setNewMsg1,
+        setNewMsg2,
+        filteredStatuses,
+        setFilteredStatuses
       }}
     >
       <div className="App">

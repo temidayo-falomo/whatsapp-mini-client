@@ -1,23 +1,26 @@
 import styled from "styled-components";
 
 export const StyledMessages = styled.div`
-  width: 90%;
-  height: 80vh;
-  overflow: auto;
-  padding: 20px;
-  margin: 0 auto;
-  margin-top: 1rem;
-  display: flex;
-  gap: 2rem;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  width: 100%;
+
+  .heigh {
+    height: 80vh;
+    padding: 20px;
+    margin: 0 auto;
+    display: flex;
+    gap: 2rem;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
 
   .bubble-left {
     padding: 20px;
     border-radius: 30px;
     background-color: gainsboro;
     color: #000;
+    margin-right: auto;
+    width: 300px;
   }
 
   .bubble-right {
@@ -39,10 +42,12 @@ export const StyledMessages = styled.div`
   }
 
   .left {
+    margin: 2rem 0;
     margin-right: auto;
 
     span {
-      font-size: 0.6rem;
+      font-size: 0.7rem;
+      margin-left: 1rem;
     }
   }
 
@@ -50,7 +55,7 @@ export const StyledMessages = styled.div`
     margin-left: auto;
     display: flex;
     align-items: center;
-    /* border: 2px red solid; */
+    margin: 2rem 0;
 
     span {
       font-size: 0.7rem;

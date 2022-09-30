@@ -5,9 +5,47 @@ export const StyledStatus = styled.div`
   position: relative;
   overflow: auto;
 
-  .top {
+  .indicators {
     position: absolute;
     top: 1rem;
+    left: 0;
+    right: 0;
+    width: 95%;
+    display: flex;
+  }
+
+  .indicators-w {
+    /* position: absolute; */
+
+    .indicator {
+      margin: 0 1rem;
+      width: 35px;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 16px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5px);
+      -webkit-backdrop-filter: blur(5px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 10px;
+      padding: 4px !important;
+      cursor: pointer;
+    }
+
+    li {
+      position: relative;
+      padding: 0;
+    }
+  }
+
+  .indicators-w.active {
+    background-color: #fff !important;
+    border-radius: 16px;
+  }
+
+  .top {
+    position: absolute;
+    top: 3rem;
     left: 2rem;
     width: 95%;
     height: 80px;

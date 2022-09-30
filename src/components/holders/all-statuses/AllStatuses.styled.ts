@@ -17,6 +17,14 @@ export const StyledAllStatuses = styled.div`
     }
   }
 
+  .card-active {
+    border-radius: 20px;
+
+    h4 {
+      color: green;
+    }
+  }
+
   .avatar {
     display: grid;
     place-content: center;

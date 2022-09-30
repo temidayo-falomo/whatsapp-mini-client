@@ -23,7 +23,10 @@ function MessageCard(props: any) {
         let msgs: any = [];
         snapshot.docs.forEach((doc) => {
           msgs.push({ ...doc.data(), id: doc.id });
+      
+          
         });
+        
         setLastMsg(
           msgs
             .filter((val: any) => {

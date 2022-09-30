@@ -13,6 +13,7 @@ const GlobalStyle = createGlobalStyle`
     overflow: hidden;
     color: #fff;
     background-color: #000;
+    margin: 0;
   }
 
   .App {

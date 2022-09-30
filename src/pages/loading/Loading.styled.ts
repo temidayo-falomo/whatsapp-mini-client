@@ -5,7 +5,6 @@ export const StyledLoading = styled.div`
   display: grid;
   place-content: center;
   background-color: #000;
-  width: 100%;
 
   .lds-ellipsis {
     display: inline-block;
