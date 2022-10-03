@@ -23,6 +23,22 @@ export const StyledInputBar = styled.div`
     font-size: 2rem;
   }
 
+  .pointer.actv {
+    color: rgb(9, 54, 59);
+    font-size: 2.5rem;
+  }
+
+  form {
+    display: flex;
+    gap: 1rem;
+
+    button {
+      font-size: 2rem;
+      background-color: transparent;
+      color: #fff;
+    }
+  }
+
   input {
     width: 100%;
     padding: 15px 20px;

@@ -13,6 +13,7 @@ function AddStatusRight(props: any) {
   const [currColor, setCurrColor] = useState(0);
   const [statusText, setStatusText] = useState("");
   const [currentFont, setCurrentFont] = useState(0);
+  const [clicked, setClicked] = useState(false);
 
   const handleColorChange = () => {
     setCurrColor(currColor + 1);
@@ -83,8 +84,12 @@ function AddStatusRight(props: any) {
           </div>
           <div className="row btw footer">
             <div className="row gap-1 center">
-              <MdEmojiEmotions className="pointer" />
+              <MdEmojiEmotions
+                className={clicked ? "pointer actv" : "pointer"}
+                onClick={() => setClicked(!clicked)}
+              />
               <h3
+                style={{ fontFamily: `${fonts[currentFont]}` }}
                 className="pointer"
                 onClick={() => {
                   setCurrentFont(currentFont + 1);

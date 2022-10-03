@@ -40,4 +40,5 @@ export const StyledProfileLeft = styled.div`
       width: 85%;
     }
   }
+
 `;

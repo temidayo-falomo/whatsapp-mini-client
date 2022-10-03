@@ -8,13 +8,14 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import bcrypt from "bcryptjs";
 import { AppContext } from "../../helper/Context";
 import EmojiPicker from "emoji-picker-react";
+import { AiOutlineSend } from "react-icons/ai";
 
 function InputBar() {
   const { messageText, setMessageText, friendId, friendImg } =
     useContext(AppContext);
 
   const [showEmojis, setShowEmojis] = useState(false);
-  const [currentEmoji, setCurrentEmoji] = useState("");
+  const [clicked, setClicked] = useState(false);
 
   const messagesCollectionRef: any = collection(db, "messages");
 
@@ -46,8 +47,11 @@ function InputBar() {
   return (
     <StyledInputBar>
       <MdEmojiEmotions
-        className="pointer"
-        onClick={() => setShowEmojis(!showEmojis)}
+        className={clicked ? "pointer actv" : "pointer"}
+        onClick={() => {
+          setShowEmojis(!showEmojis);
+          setClicked(!clicked);
+        }}
       />
       {showEmojis && (
         <div className="emojis">
@@ -67,7 +71,11 @@ function InputBar() {
           required
           onChange={(e) => setMessageText(e.target.value)}
         />
+        <button className="grid-center">
+          <AiOutlineSend className="send" />
+        </button>
       </form>
+
       <BsFillMicFill className="pointer" />
     </StyledInputBar>
   );

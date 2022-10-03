@@ -37,6 +37,10 @@ export const StyledAddStatusRight = styled.form`
       background-color: green;
       color: #fff;
     }
+
+    .pointer.actv {
+      color: #09363b;
+    }
   }
 
   .top {
