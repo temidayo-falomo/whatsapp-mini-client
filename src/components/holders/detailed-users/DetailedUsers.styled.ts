@@ -27,7 +27,7 @@ export const StyledDetailedUsers = styled.div`
   .det-col {
     padding: 20px;
     height: 60vh;
-    gap: 2rem;
+    gap: 1rem;
   }
 
   .det-card {

@@ -2,11 +2,12 @@ import styled from "styled-components";
 
 export const StyledMessages = styled.div`
   width: 100%;
+  height: 100%;
 
   .heigh {
     height: 80vh;
     padding: 20px;
-    margin: 0 auto;
+    margin: auto;
     display: flex;
     gap: 2rem;
     flex-direction: column;
