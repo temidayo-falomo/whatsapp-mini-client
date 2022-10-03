@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StyledProfileLeft } from "./ProfileLeft.styled";
 import { FiEdit } from "react-icons/fi";
 import { auth } from "../../../firebase/firebase-config";
 import { MdArrowBack } from "react-icons/md";
 import { Link } from "react-router-dom";
+import { AppContext } from "../../../helper/Context";
 
 function ProfileLeft() {
+  const { user, setUser } = useContext(AppContext);
+
   return (
     <StyledProfileLeft>
       <div className="top row gap-1 center">
@@ -33,7 +36,7 @@ function ProfileLeft() {
           <FiEdit className="pointer" />
         </div>
         <div className="col">
-          <h5 className="cap">{auth.currentUser?.displayName}</h5>
+          <h5 className="cap">{user?.username}</h5>
           <p>
             This is not your username or pin. This name will be visibile to your
             WhatsApp contacts.
@@ -47,9 +50,7 @@ function ProfileLeft() {
           <FiEdit className="pointer" />
         </div>
         <div className="col">
-          <p>
-            Notification off, please expect delayed revert. Call if very urgent.
-          </p>
+          <p>{user?.userAbout ? user.userAbout : "Available."}</p>
         </div>
       </div>
     </StyledProfileLeft>

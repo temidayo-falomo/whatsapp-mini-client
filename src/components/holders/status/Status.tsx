@@ -98,7 +98,9 @@ function Status() {
                       />
                     </div>
 
-                    <span className="status-text">{data.statusText}</span>
+                    <span className="status-text" style={{fontFamily: `${data.fontStyle}`}}>{data.statusText}</span>
+
+
                     {auth.currentUser?.uid !== data.userId && (
                       <form
                         className="footer"

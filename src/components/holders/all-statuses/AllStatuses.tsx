@@ -59,7 +59,7 @@ function AllStatuses(props: any) {
             onClick={() => handleStatusCard(data.userId, index)}
           >
             <svg viewBox="0 0 120 120">
-              <circle cx="55" cy="55" r="55" className="dashed" />
+              <circle cx="55" cy="55" r="55" className="" />
               <foreignObject x="5" y="5" height="100px" width="100px">
                 <div
                   className="txt"

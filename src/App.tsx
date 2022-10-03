@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import { auth } from "./firebase/firebase-config";
 import GlobalStyle from "./GlobalStyles";
 import { AppContext } from "./helper/Context";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Loading from "./pages/loading/Loading";
 import Login from "./pages/login/Login";
 import Profile from "./pages/profile/Profile";
+import Settings from "./pages/settings/Settings";
 import StatusUploads from "./pages/status-uploads/StatusUploads";
 
 function App() {
   const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState();
 
   //
 
@@ -52,7 +53,12 @@ function App() {
     "pink",
   ]);
 
-  const [fonts, setFonts] = useState(["sans-serif", "lato", "poppins"]);
+  const [fonts, setFonts] = useState([
+    "Plus Jakarta Sans",
+    "sans-serif",
+    "Noto Sans Mono",
+    "Roboto Condensed",
+  ]);
 
   const [newMsg1, setNewMsg1] = useState([]);
   const [newMsg2, setNewMsg2] = useState([]);
@@ -72,6 +78,8 @@ function App() {
       value={{
         isAuth,
         setIsAuth,
+        user,
+        setUser,
         users,
         setUsers,
         friendId,
@@ -115,6 +123,7 @@ function App() {
           <Route path="/" element={<Dashboard />} />
           <Route path="/status-uploads" element={<StatusUploads />} />
           <Route path="/profile" element={<Profile />} />
+          <Route path="/settings" element={<Settings />} />
         </Routes>
       </div>
     </AppContext.Provider>

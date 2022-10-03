@@ -5,6 +5,7 @@ import { AppContext } from "../../../helper/Context";
 import { AiFillDelete } from "react-icons/ai";
 
 import ScrollToBottom from "react-scroll-to-bottom";
+import { deleteDoc, doc } from "firebase/firestore";
 
 function Messages() {
   const {
@@ -15,6 +16,11 @@ function Messages() {
     newMsg1,
     searchText,
   } = useContext(AppContext);
+
+  const deleteMessage = async (messageId: any) => {
+    const messageDc = doc(db, "messages", messageId);
+    await deleteDoc(messageDc);
+  };
 
   return (
     <StyledMessages>
@@ -58,7 +64,12 @@ function Messages() {
                   <span>{data.sentTime}</span>
                 </div>
 
-                {displayDelete && <AiFillDelete className="del" />}
+                {displayDelete && auth.currentUser?.uid === data.senderId && (
+                  <AiFillDelete
+                    className="del pointer"
+                    onClick={() => deleteMessage(data.id)}
+                  />
+                )}
               </div>
             );
           })}

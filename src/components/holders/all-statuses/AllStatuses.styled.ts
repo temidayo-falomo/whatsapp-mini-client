@@ -42,9 +42,7 @@ export const StyledAllStatuses = styled.div`
     cursor: pointer;
 
     svg {
-      min-height: 100px !important;
       min-width: 100px !important;
-      max-height: 100px;
       max-width: 100px;
     }
     circle {
@@ -72,12 +70,13 @@ export const StyledAllStatuses = styled.div`
   }
 
   .plus-icon {
-    font-size: 3rem;
+    font-size: 4rem;
     position: absolute;
     bottom: 5rem;
     right: 2rem;
     color: green;
     background-color: #fff;
+    border: 2px #fff solid;
     border-radius: 50%;
     display: none;
   }

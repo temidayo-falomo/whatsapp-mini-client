@@ -9,9 +9,10 @@ import { auth, db } from "../../../firebase/firebase-config";
 import { GiCancel } from "react-icons/gi";
 
 function AddStatusRight(props: any) {
-  const { colors, setDisplayStatus } = useContext(AppContext);
+  const { colors, fonts } = useContext(AppContext);
   const [currColor, setCurrColor] = useState(0);
   const [statusText, setStatusText] = useState("");
+  const [currentFont, setCurrentFont] = useState(0);
 
   const handleColorChange = () => {
     setCurrColor(currColor + 1);
@@ -19,6 +20,10 @@ function AddStatusRight(props: any) {
 
   if (currColor > colors.length - 1) {
     setCurrColor(0);
+  }
+
+  if (currentFont > fonts.length - 1) {
+    setCurrentFont(0);
   }
 
   const statusesCollectionRef = collection(db, "status-uploads");
@@ -42,11 +47,15 @@ function AddStatusRight(props: any) {
       realTime,
       statusText,
       statusColor: colors[currColor],
-      fontStyle: "sans-serif",
+      fontStyle: fonts[currentFont],
       timestamp: serverTimestamp(),
     };
 
     await addDoc(statusesCollectionRef, msgObj);
+
+    if (window.innerWidth < 1000) {
+      props.setShowAdd(false);
+    }
   };
 
   return (
@@ -69,19 +78,27 @@ function AddStatusRight(props: any) {
               value={statusText}
               required
               onChange={(e) => setStatusText(e.target.value)}
+              style={{ fontFamily: `${fonts[currentFont]}` }}
             />
           </div>
           <div className="row btw footer">
             <div className="row gap-1 center">
               <MdEmojiEmotions className="pointer" />
-              <h3 className="pointer">T</h3>
+              <h3
+                className="pointer"
+                onClick={() => {
+                  setCurrentFont(currentFont + 1);
+                }}
+              >
+                T
+              </h3>
               <BsFillPaletteFill
                 className="pointer"
                 onClick={handleColorChange}
               />
             </div>
 
-            <button onClick={() => props.setShowAdd(false)}>
+            <button>
               <RiSendPlaneFill />
             </button>
           </div>

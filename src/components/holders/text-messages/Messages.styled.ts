@@ -31,6 +31,7 @@ export const StyledMessages = styled.div`
 
     .del {
       display: none;
+      font-size: 2rem !important;
     }
 
     :hover {

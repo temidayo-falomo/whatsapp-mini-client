@@ -45,13 +45,13 @@ export const StyledStatus = styled.div`
 
   .top {
     position: absolute;
-    top: 3rem;
-    left: 2rem;
+    left: 0;
+    right: 0;
+    top: 4rem;
+    margin: auto;
     width: 95%;
     height: 80px;
     z-index: 9999 !important;
-    border-radius: 10px;
-    padding: 0 2%;
 
     .avatar {
       width: 60px;

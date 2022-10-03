@@ -15,6 +15,8 @@ export const StyledMessageCard = styled.div`
   .profile-pic {
     height: 70px;
     width: 70px;
+    min-width: 70px;
+    max-width: 70px;
     border-radius: 10px;
     background-position: center;
     background-size: cover;
