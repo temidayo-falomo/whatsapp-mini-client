@@ -34,7 +34,7 @@ export const StyledAllStatuses = styled.div`
   }
 
   .status-card {
-    padding: 10px 20px;
+    padding: 10px;
     gap: 0.5rem;
     margin: 1rem 1rem;
     cursor: pointer;

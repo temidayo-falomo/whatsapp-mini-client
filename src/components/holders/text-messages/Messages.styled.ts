@@ -16,16 +16,15 @@ export const StyledMessages = styled.div`
 
   .bubble-left {
     padding: 20px;
-    border-radius: 30px;
+    border-radius: 30px 30px 0 30px;
     background-color: gainsboro;
     color: #000;
     margin-right: auto;
-    width: 300px;
   }
 
   .bubble-right {
     padding: 20px;
-    border-radius: 30px;
+    border-radius: 30px 30px 30px 0;
     background-color: #1982fc;
     color: #fff;
     margin-left: auto;
@@ -44,6 +43,8 @@ export const StyledMessages = styled.div`
   .left {
     margin: 2rem 0;
     margin-right: auto;
+    display: flex;
+    align-items: center;
 
     span {
       font-size: 0.7rem;
@@ -61,5 +62,9 @@ export const StyledMessages = styled.div`
       font-size: 0.7rem;
       margin-left: 1rem;
     }
+  }
+
+  @media (max-width: 1000px) {
+    height: 70vh;
   }
 `;

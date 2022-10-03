@@ -18,4 +18,8 @@ export const StyledDashboardRightErr = styled.div`
   img {
     width: 250px;
   }
+
+  @media (max-width: 1000px) {
+    display: none;
+  }
 `;

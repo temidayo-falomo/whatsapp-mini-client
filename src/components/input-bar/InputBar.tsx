@@ -12,7 +12,7 @@ import EmojiPicker from "emoji-picker-react";
 function InputBar() {
   const { messageText, setMessageText, friendId, friendImg } =
     useContext(AppContext);
- 
+
   const [showEmojis, setShowEmojis] = useState(false);
   const [currentEmoji, setCurrentEmoji] = useState("");
 
@@ -51,7 +51,11 @@ function InputBar() {
       />
       {showEmojis && (
         <div className="emojis">
-          <EmojiPicker onEmojiClick={(param: any) => console.log(param)} />
+          <EmojiPicker
+            onEmojiClick={(param: any) => {
+              setMessageText(messageText + param?.emoji);
+            }}
+          />
         </div>
       )}
       <FaPaperclip className="pointer" />
@@ -63,7 +67,6 @@ function InputBar() {
           required
           onChange={(e) => setMessageText(e.target.value)}
         />
-        {/* <button>Send</button> */}
       </form>
       <BsFillMicFill className="pointer" />
     </StyledInputBar>

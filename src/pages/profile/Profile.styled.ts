@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
-export const StyledStatusUploads = styled.div`
+export const StyledProfile = styled.div`
   display: grid;
-  grid-template-columns: 500px auto;
-  height: 100vh;
+  grid-template-columns: 600px auto;
+  min-height: 100vh;
 
   @media (max-width: 1000px) {
     display: flex;

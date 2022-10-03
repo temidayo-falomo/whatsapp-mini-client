@@ -17,6 +17,7 @@ import {
 } from "firebase/firestore";
 import { auth, db } from "../../../firebase/firebase-config";
 import { Link } from "react-router-dom";
+import DetailedUsers from "../detailed-users/DetailedUsers";
 
 function DashboardLeft() {
   const {
@@ -36,6 +37,8 @@ function DashboardLeft() {
   const [friendsList, setFriendsList] = useState<any>();
   const [friendsCards, setFriendsCards] = useState<any>([]);
   const [number, setNumber] = useState("disp");
+  const [dropdown, setDropdown] = useState(false);
+  const [detailedUsersShow, setDetailedUsersShow] = useState(false);
 
   // users collection
   const usersCollectionRef = collection(db, "users");
@@ -53,25 +56,22 @@ function DashboardLeft() {
   ) => {
     const userDoc = doc(db, "users", userId);
 
-    await getDoc(userDoc)
-      .then((doc: any) => {
-        setFriendsList(doc.data().friends);
-      })
-      .then(() => {
-        if (friendsList) {
-          const newFriend = {
-            friends: [
-              ...friendsList,
-              {
-                friendName,
-                friendAvatar,
-                friendId,
-              },
-            ],
-          };
-          updateDoc(userDoc, newFriend);
-        }
-      });
+    await getDoc(userDoc).then((doc: any) => {
+      setFriendsList(doc.data().friends);
+
+      const newFriend = {
+        friends: [
+          ...doc.data().friends,
+          {
+            friendName,
+            friendAvatar,
+            friendId,
+          },
+        ],
+      };
+
+      updateDoc(userDoc, newFriend);
+    });
   };
 
   const handleCard = (
@@ -81,7 +81,6 @@ function DashboardLeft() {
     paramIndex: any
   ) => {
     setFriendId(paramId);
-    // console.log(paramId, "hello");
 
     setFriendImg(paramImg);
     setFriendName(paramName);
@@ -91,9 +90,7 @@ function DashboardLeft() {
 
   useEffect(() => {
     getAllUsers();
-  }, []);
 
-  useEffect(() => {
     const id: any = auth.currentUser?.uid;
     const docRef = doc(db, "users", id);
     onSnapshot(docRef, (doc) => {
@@ -140,18 +137,42 @@ function DashboardLeft() {
 
   return (
     <StyledDashboardLeft>
+      <div
+        className={
+          !detailedUsersShow ? "detailed-users" : "detailed-users active"
+        }
+      >
+        <DetailedUsers
+          detailedUsersShow={detailedUsersShow}
+          setDetailedUsersShow={setDetailedUsersShow}
+        />
+      </div>
+
       <div className="top btw row center">
         <div className="gap-1 row center gap">
           <div
             className="avatar"
-            style={{ backgroundImage: `url(${auth.currentUser?.photoURL})` }}
+            style={{
+              backgroundImage: `url(${auth.currentUser?.photoURL})`,
+              backgroundColor: "rebeccapurple",
+            }}
           ></div>
           <Link to="/status-uploads">
             <MdDataUsage className="status pointer" />
           </Link>
         </div>
 
-        <HiOutlineChevronDown className="pointer" />
+        <HiOutlineChevronDown
+          className={dropdown ? "pointer round" : "pointer"}
+          onClick={() => setDropdown(!dropdown)}
+        />
+
+        {dropdown && (
+          <div className="dropdown col">
+            <Link to="/profile">Profile</Link>
+            <Link to="/settings">Settings</Link>
+          </div>
+        )}
       </div>
 
       <div className="users row gap-1">
@@ -200,7 +221,10 @@ function DashboardLeft() {
         })}
       </div>
 
-      <div className="chat-circle grid-center pointer">
+      <div
+        className="chat-circle grid-center pointer"
+        onClick={() => setDetailedUsersShow(!detailedUsersShow)}
+      >
         <BsChatRightTextFill className="pointer" />
       </div>
     </StyledDashboardLeft>

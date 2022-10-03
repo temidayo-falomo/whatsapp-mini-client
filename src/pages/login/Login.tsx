@@ -28,6 +28,7 @@ function Login() {
             },
           ],
           statusUploads: [],
+          userAbout: "Available.",
         });
 
         navigate("/");

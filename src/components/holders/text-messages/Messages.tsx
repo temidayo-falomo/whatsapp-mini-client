@@ -7,8 +7,14 @@ import { AiFillDelete } from "react-icons/ai";
 import ScrollToBottom from "react-scroll-to-bottom";
 
 function Messages() {
-  const { friendId, displayDelete, setDisplayDelete, newMsg2, newMsg1 } =
-    useContext(AppContext);
+  const {
+    friendId,
+    displayDelete,
+    setDisplayDelete,
+    newMsg2,
+    newMsg1,
+    searchText,
+  } = useContext(AppContext);
 
   return (
     <StyledMessages>
@@ -22,6 +28,15 @@ function Messages() {
               (val.receiverId === friendId &&
                 val.senderId === auth.currentUser?.uid)
             );
+          })
+          .filter((data: any) => {
+            if (searchText == "") {
+              return data;
+            } else if (
+              data.message.toLowerCase().includes(searchText.toLowerCase())
+            ) {
+              return data;
+            }
           })
           .map((data: any) => {
             return (

@@ -79,13 +79,26 @@ export const StyledStatus = styled.div`
   .footer {
     width: 80%;
     height: 60px;
-
     position: absolute;
     bottom: 2rem;
     left: 10%;
     right: 0%;
     background-color: #fff;
     border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+    overflow: hidden;
+
+    input {
+      height: 100%;
+      width: 100%;
+      padding: 0 30px;
+    }
+
+    button {
+      width: 200px;
+    }
   }
 
   .carousel {
@@ -100,9 +113,17 @@ export const StyledStatus = styled.div`
     background-size: cover;
     height: 100vh;
     position: relative;
+    text-align: center;
 
     .status-text {
       font-size: 4rem;
     }
+  }
+
+  @media (max-width: 1000px) {
+    position: absolute;
+    height: 100vh;
+    width: 100%;
+    z-index: 999;
   }
 `;

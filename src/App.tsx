@@ -6,6 +6,7 @@ import { AppContext } from "./helper/Context";
 import Dashboard from "./pages/dashboard/Dashboard";
 import Loading from "./pages/loading/Loading";
 import Login from "./pages/login/Login";
+import Profile from "./pages/profile/Profile";
 import StatusUploads from "./pages/status-uploads/StatusUploads";
 
 function App() {
@@ -37,6 +38,8 @@ function App() {
   //
 
   const [filteredStatuses, setFilteredStatuses] = useState("");
+  const [displaySearch, setDisplaySearch] = useState(false);
+  const [searchText, setSearchText] = useState("");
 
   const [colors, setColors] = useState([
     "orange",
@@ -98,7 +101,11 @@ function App() {
         setNewMsg1,
         setNewMsg2,
         filteredStatuses,
-        setFilteredStatuses
+        setFilteredStatuses,
+        displaySearch,
+        setDisplaySearch,
+        searchText,
+        setSearchText,
       }}
     >
       <div className="App">
@@ -107,6 +114,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/" element={<Dashboard />} />
           <Route path="/status-uploads" element={<StatusUploads />} />
+          <Route path="/profile" element={<Profile />} />
         </Routes>
       </div>
     </AppContext.Provider>

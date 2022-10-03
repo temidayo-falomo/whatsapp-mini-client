@@ -7,5 +7,14 @@ export const StyledDashboardRight = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  
+
+  @media (max-width: 1000px) {
+    position: absolute;
+    bottom: 0;
+    z-index: 9999999999999;
+    background-color: #000;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden !important;
+  }
 `;

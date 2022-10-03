@@ -50,4 +50,8 @@ export const StyledAddStatusRight = styled.form`
       outline: none;
     }
   }
+
+  @media (max-width: 1000px) {
+    display: none;
+  }
 `;

@@ -18,6 +18,7 @@ export const StyledMessageCard = styled.div`
     border-radius: 10px;
     background-position: center;
     background-size: cover;
+    background-color: rebeccapurple;
   }
 
   .circle {
