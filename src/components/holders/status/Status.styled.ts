@@ -57,7 +57,9 @@ export const StyledStatus = styled.div`
       width: 60px;
       height: 60px;
       border-radius: 50%;
-      border: 2px red solid;
+      border: 2px #fff solid;
+      background-size: cover;
+      background-position: center;
     }
   }
 
@@ -94,6 +96,8 @@ export const StyledStatus = styled.div`
       height: 100%;
       width: 100%;
       padding: 0 30px;
+      outline: none;
+      border: none;
     }
 
     button {

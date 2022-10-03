@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const StyledAllStatuses = styled.div`
   background-color: #000;
   border-right: 1px rgb(43, 42, 42) solid;
+  position: relative;
+  height: 100vh;
 
   .top-part {
     margin: 1rem 2rem;
@@ -66,6 +68,23 @@ export const StyledAllStatuses = styled.div`
       text-align: center;
       line-height: 100px;
       border-radius: 50%;
+    }
+  }
+
+  .plus-icon {
+    font-size: 3rem;
+    position: absolute;
+    bottom: 5rem;
+    right: 2rem;
+    color: green;
+    background-color: #fff;
+    border-radius: 50%;
+    display: none;
+  }
+
+  @media (max-width: 1000px) {
+    .plus-icon {
+      display: block;
     }
   }
 `;

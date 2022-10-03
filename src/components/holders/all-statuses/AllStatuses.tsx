@@ -1,18 +1,17 @@
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
 import React, { useContext, useEffect, useRef, useState } from "react";
-import { MdOutlineCancel } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { auth, db } from "../../../firebase/firebase-config";
 import { AppContext } from "../../../helper/Context";
 import { StyledAllStatuses } from "./AllStatuses.styled";
 import { GrLinkPrevious } from "react-icons/gr";
+import { BsPlusCircleFill } from "react-icons/bs";
 
-function AllStatuses() {
+function AllStatuses(props: any) {
   const {
     allStatus,
     setAllStatus,
     setDisplayStatus,
-    statusByUser,
     setStatusByUser,
     setFilteredStatuses,
   } = useContext(AppContext);
@@ -77,6 +76,11 @@ function AllStatuses() {
           </div>
         );
       })}
+
+      <BsPlusCircleFill
+        className="pointer plus-icon"
+        onClick={() => props.setShowAdd(true)}
+      />
     </StyledAllStatuses>
   );
 }

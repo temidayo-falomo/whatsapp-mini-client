@@ -6,9 +6,10 @@ import { StyledAddStatusRight } from "./AddStatusRight.styled";
 import { RiSendPlaneFill } from "react-icons/ri";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { auth, db } from "../../../firebase/firebase-config";
+import { GiCancel } from "react-icons/gi";
 
-function AddStatusRight() {
-  const { colors } = useContext(AppContext);
+function AddStatusRight(props: any) {
+  const { colors, setDisplayStatus } = useContext(AppContext);
   const [currColor, setCurrColor] = useState(0);
   const [statusText, setStatusText] = useState("");
 
@@ -49,30 +50,44 @@ function AddStatusRight() {
   };
 
   return (
-    <StyledAddStatusRight
-      style={{ backgroundColor: colors[currColor] }}
-      onSubmit={(e: any) => sendStatus(e)}
-    >
-      <div className="mid">
-        <input
-          type="text"
-          placeholder="Type A Status..."
-          value={statusText}
-          onChange={(e) => setStatusText(e.target.value)}
-        />
-      </div>
-      <div className="row btw footer">
-        <div className="row gap-1 center">
-          <MdEmojiEmotions className="pointer" />
-          <h3 className="pointer">T</h3>
-          <BsFillPaletteFill className="pointer" onClick={handleColorChange} />
-        </div>
+    <>
+      {props.showAdd && (
+        <StyledAddStatusRight
+          style={{ backgroundColor: colors[currColor] }}
+          onSubmit={(e: any) => sendStatus(e)}
+        >
+          <div className="add-top row">
+            <GiCancel
+              onClick={() => props.setShowAdd(false)}
+              className="pointer"
+            />
+          </div>
+          <div className="mid">
+            <input
+              type="text"
+              placeholder="Type A Status..."
+              value={statusText}
+              required
+              onChange={(e) => setStatusText(e.target.value)}
+            />
+          </div>
+          <div className="row btw footer">
+            <div className="row gap-1 center">
+              <MdEmojiEmotions className="pointer" />
+              <h3 className="pointer">T</h3>
+              <BsFillPaletteFill
+                className="pointer"
+                onClick={handleColorChange}
+              />
+            </div>
 
-        <button>
-          <RiSendPlaneFill />
-        </button>
-      </div>
-    </StyledAddStatusRight>
+            <button onClick={() => props.setShowAdd(false)}>
+              <RiSendPlaneFill />
+            </button>
+          </div>
+        </StyledAddStatusRight>
+      )}
+    </>
   );
 }
 

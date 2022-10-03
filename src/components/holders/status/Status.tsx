@@ -5,12 +5,15 @@ import "react-slideshow-image/dist/styles.css";
 import { AppContext } from "../../../helper/Context";
 import { MdOutlineCancel } from "react-icons/md";
 import { useState } from "react";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import { auth, db } from "../../../firebase/firebase-config";
 
 function Status() {
   const { statusByUser, setDisplayStatus, filteredStatuses } =
     useContext(AppContext);
 
   const [active, setActive] = useState<number>();
+  const [replyText, setReplyText] = useState("");
 
   const handleIndex = (param: number) => {
     setActive(param);
@@ -25,7 +28,38 @@ function Status() {
     </div>
   );
 
-  // Todo Statusbyuser.filter.map(filter by "clicked on id")
+  const messagesCollectionRef: any = collection(db, "messages");
+
+  const sendReply = async (
+    e: React.FormEvent<HTMLFormElement>,
+    statusRepliedTo: any,
+    receiverId: string,
+    receiverImg: string
+  ) => {
+    e.preventDefault();
+    setReplyText("");
+
+    var time = new Date();
+
+    let realTime = time.toLocaleString("en-US", {
+      hour: "numeric",
+      minute: "numeric",
+      hour12: true,
+    });
+
+    let msgObj = {
+      senderImg: auth.currentUser?.photoURL,
+      senderId: auth.currentUser?.uid,
+      receiverImg: receiverImg,
+      receiverId: receiverId,
+      message:
+        `Replied To Status "${statusRepliedTo}" : ` + " " + replyText,
+      sentTime: realTime,
+      timestamp: serverTimestamp(),
+    };
+
+    await addDoc(messagesCollectionRef, msgObj);
+  };
 
   return (
     <StyledStatus>
@@ -65,10 +99,28 @@ function Status() {
                     </div>
 
                     <span className="status-text">{data.statusText}</span>
-                    <div className="footer">
-                      <input type="text" placeholder="Type a reply" />
-                      <button>Send</button>
-                    </div>
+                    {auth.currentUser?.uid !== data.userId && (
+                      <form
+                        className="footer"
+                        onSubmit={(e) =>
+                          sendReply(
+                            e,
+                            data.statusText,
+                            data.userId,
+                            data.userAvt
+                          )
+                        }
+                      >
+                        <input
+                          type="text"
+                          placeholder="Type a reply"
+                          value={replyText}
+                          required
+                          onChange={(e) => setReplyText(e.target.value)}
+                        />
+                        <button>Send</button>
+                      </form>
+                    )}
                   </div>
                 </div>
               );
