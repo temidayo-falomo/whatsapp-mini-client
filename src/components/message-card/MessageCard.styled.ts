@@ -8,8 +8,8 @@ export const StyledMessageCard = styled.div`
   padding: 10px;
   border-radius: 10px;
 
-  .blue-txt {
-    color: rosybrown;
+  .new-txt {
+    color: greenyellow;
   }
 
   .col {

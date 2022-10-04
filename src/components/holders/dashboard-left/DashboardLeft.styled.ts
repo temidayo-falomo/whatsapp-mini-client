@@ -8,6 +8,18 @@ export const StyledDashboardLeft = styled.div`
   height: 100vh;
   overflow: auto;
 
+  ::-webkit-scrollbar {
+    width: 0.2em;
+  }
+
+  ::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #008001;
+  }
+
   .detailed-users {
     background: rgba(255, 255, 255, 0.2);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -25,6 +37,10 @@ export const StyledDashboardLeft = styled.div`
     background-color: #000;
     border: 2px #041a1d solid;
     overflow: auto;
+
+    ::-webkit-scrollbar {
+      width: 0;
+    }
   }
 
   .detailed-users.active {

@@ -8,7 +8,7 @@ export const StyledAllStatuses = styled.div`
 
   .top-part {
     margin: 1rem;
-    margin-top: 0;
+    margin-top: 1.5rem;
 
     .prev {
       color: #fff;

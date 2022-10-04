@@ -32,6 +32,7 @@ function DashboardLeft() {
     newMsg2,
     setNewMsg1,
     setNewMsg2,
+    setCurrTime,
   } = useContext(AppContext);
 
   const [friendsList, setFriendsList] = useState<any>();
@@ -85,11 +86,11 @@ function DashboardLeft() {
     paramIndex: any
   ) => {
     setFriendId(paramId);
-
     setFriendImg(paramImg);
     setFriendName(paramName);
     setNumber(paramIndex);
     setDisplayDelete(false);
+    // setCurrTime("Hello");
   };
 
   useEffect(() => {

@@ -63,6 +63,16 @@ function App() {
   const [newMsg1, setNewMsg1] = useState([]);
   const [newMsg2, setNewMsg2] = useState([]);
 
+  var time = new Date();
+
+  let realTime = time.toLocaleString("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
+
+  const [currTime, setCurrTime] = useState(realTime);
+
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
@@ -114,6 +124,8 @@ function App() {
         setDisplaySearch,
         searchText,
         setSearchText,
+        currTime,
+        setCurrTime,
       }}
     >
       <div className="App">

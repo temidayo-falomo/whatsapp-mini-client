@@ -25,7 +25,7 @@ function AllStatuses(props: any) {
 
   useEffect(() => {
     const postsCollectionRef = collection(db, "status-uploads");
-    const q = query(postsCollectionRef, orderBy("timestamp"));
+    const q = query(postsCollectionRef, orderBy("timestamp", "asc"));
     onSnapshot(q, (snapshot) => {
       const posts = snapshot.docs.map((doc) => ({
         id: doc.id,
@@ -48,34 +48,37 @@ function AllStatuses(props: any) {
         </Link>
       </div>
 
-      {allStatus?.map((data: any, index: any) => {
-        return (
-          <div
-            // className="status-card row center"
-            className={`status-card row center ${
-              index === number && "card-active"
-            }`}
-            key={data.id}
-            onClick={() => handleStatusCard(data.userId, index)}
-          >
-            <svg viewBox="0 0 120 120">
-              <circle cx="55" cy="55" r="55" className="" />
-              <foreignObject x="5" y="5" height="100px" width="100px">
-                <div
-                  className="txt"
-                  style={{ backgroundColor: data.statusColor }}
-                >
-                  {data.statusText.slice(0, 8)}..
-                </div>
-              </foreignObject>
-            </svg>
-            <div className="col gap-5">
-              <h4 style={{ textTransform: "capitalize" }}>{data.userName}</h4>
-              <span>Today at {data.realTime}</span>
+      {allStatus
+        .sort((a: any, b: any) => a.timestamp - b.timestamp)
+        .slice(0)
+        .reverse()
+        .map((data: any, index: any) => {
+          return (
+            <div
+              className={`status-card row center ${
+                index === number && "card-active"
+              }`}
+              key={data.id}
+              onClick={() => handleStatusCard(data.userId, index)}
+            >
+              <svg viewBox="0 0 120 120">
+                <circle cx="55" cy="55" r="55" className="" />
+                <foreignObject x="5" y="5" height="100px" width="100px">
+                  <div
+                    className="txt"
+                    style={{ backgroundColor: data.statusColor }}
+                  >
+                    {data.statusText.slice(0, 8)}..
+                  </div>
+                </foreignObject>
+              </svg>
+              <div className="col gap-5">
+                <h4 style={{ textTransform: "capitalize" }}>{data.userName}</h4>
+                <span>Today at {data.realTime}</span>
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
 
       <BsPlusCircleFill
         className="pointer plus-icon"

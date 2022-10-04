@@ -1,5 +1,6 @@
 import { collection, onSnapshot, query, where } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
+import { BsCheckAll } from "react-icons/bs";
 import { auth, db } from "../../firebase/firebase-config";
 import { StyledMessageCard } from "./MessageCard.styled";
 
@@ -7,6 +8,14 @@ function MessageCard(props: any) {
   const [lastMsg1, setLastMsg1] = useState<any>();
   const [lastMsg2, setLastMsg2] = useState<any>();
   const [newMessageColor, setNewMessageColor] = useState(false);
+
+  let time = new Date();
+
+  let realTime = time.toLocaleString("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
 
   // collection ref
   const colRef = collection(db, "messages");
@@ -38,7 +47,8 @@ function MessageCard(props: any) {
     const q2 = query(colRef, where("receiverId", "==", auth.currentUser?.uid));
     onSnapshot(q2, (snapshot) => {
       let msgs: any = [];
-      setNewMessageColor(true);
+
+      // setNewMessageColor(true);
       snapshot.docs.forEach((doc) => {
         msgs.push({ ...doc.data(), id: doc.id });
         // setNewMessageColor(true);
@@ -57,6 +67,16 @@ function MessageCard(props: any) {
     });
   }, []);
 
+  // useEffect(()=> {
+  //  time = new Date();
+
+  //  realTime = time.toLocaleString("en-US", {
+  //     hour: "numeric",
+  //     minute: "numeric",
+  //     hour12: true,
+  //   });
+  // })
+
   return (
     <StyledMessageCard>
       <div className="row center gap-1">
@@ -66,7 +86,17 @@ function MessageCard(props: any) {
         ></div>
         <div className="col gap-5">
           <h4 className="cap">{props.friendName}</h4>
-          <p className={newMessageColor ? "blue-txt" : ""}>
+          <p
+            className={
+              lastMsg1 &&
+              realTime ===
+                [...lastMsg1, ...lastMsg2].sort(
+                  (a: any, b: any) => a.timestamp - b.timestamp
+                )[[...lastMsg1, ...lastMsg2].length - 1]?.sentTime
+                ? "new-txt"
+                : ""
+            }
+          >
             {lastMsg1 &&
               lastMsg2 &&
               [...lastMsg1, ...lastMsg2].sort(
@@ -85,9 +115,17 @@ function MessageCard(props: any) {
               (a: any, b: any) => a.timestamp - b.timestamp
             )[[...lastMsg1, ...lastMsg2].length - 1]?.sentTime}
         </span>
-        <div className="circle grid-center">
-          <span>{lastMsg1 && [lastMsg1.length + lastMsg2.length]}</span>
-        </div>
+        <BsCheckAll
+          className={
+            lastMsg1 &&
+            realTime ===
+              [...lastMsg1, ...lastMsg2].sort(
+                (a: any, b: any) => a.timestamp - b.timestamp
+              )[[...lastMsg1, ...lastMsg2].length - 1]?.sentTime
+              ? "new-txt"
+              : "check"
+          }
+        />
       </div>
     </StyledMessageCard>
   );
