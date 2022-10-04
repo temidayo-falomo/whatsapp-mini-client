@@ -70,7 +70,11 @@ function DashboardLeft() {
         ],
       };
 
-      updateDoc(userDoc, newFriend);
+      if (friendId !== auth.currentUser?.uid) {
+        updateDoc(userDoc, newFriend);
+      } else {
+        console.log("You can't text yourself!");
+      }
     });
   };
 
@@ -219,13 +223,13 @@ function DashboardLeft() {
             </div>
           );
         })}
+      </div>
 
-        <div
-          className="chat-circle grid-center pointer"
-          onClick={() => setDetailedUsersShow(!detailedUsersShow)}
-        >
-          <BsChatRightTextFill className="pointer" />
-        </div>
+      <div
+        className="chat-circle grid-center pointer"
+        onClick={() => setDetailedUsersShow(!detailedUsersShow)}
+      >
+        <BsChatRightTextFill className="pointer" />
       </div>
     </StyledDashboardLeft>
   );

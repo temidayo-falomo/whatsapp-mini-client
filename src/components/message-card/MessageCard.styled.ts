@@ -8,8 +8,14 @@ export const StyledMessageCard = styled.div`
   padding: 10px;
   border-radius: 10px;
 
-  :hover {
-    /* border: 2px white solid; */
+  .blue-txt {
+    color: rosybrown;
+  }
+
+  .col {
+    span {
+      text-align: center;
+    }
   }
 
   .profile-pic {

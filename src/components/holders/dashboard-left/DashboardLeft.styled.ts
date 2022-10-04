@@ -111,7 +111,7 @@ export const StyledDashboardLeft = styled.div`
 
   .users {
     margin: 1rem auto;
-    width: 95%;
+    width: 100%;
     overflow: auto;
 
     ::-webkit-scrollbar {
@@ -154,6 +154,7 @@ export const StyledDashboardLeft = styled.div`
     bottom: 5%;
     z-index: 999999999;
     margin-left: auto;
+    margin-right: 1rem;
   }
 
   @media (max-width: 1000px) {
