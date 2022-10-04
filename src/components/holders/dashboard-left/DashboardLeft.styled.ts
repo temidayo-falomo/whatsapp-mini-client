@@ -5,6 +5,8 @@ export const StyledDashboardLeft = styled.div`
   color: #fff;
   position: relative;
   border-right: 1px rgb(43, 42, 42) solid;
+  height: 100vh;
+  overflow: auto;
 
   .detailed-users {
     background: rgba(255, 255, 255, 0.2);
@@ -13,7 +15,7 @@ export const StyledDashboardLeft = styled.div`
     -webkit-backdrop-filter: blur(5px);
     height: 90vh;
     width: 100%;
-    position: absolute;
+    position: fixed;
     z-index: 99999;
     bottom: -100vh;
     border-top-left-radius: 20px;
@@ -27,7 +29,9 @@ export const StyledDashboardLeft = styled.div`
 
   .detailed-users.active {
     bottom: 0;
+    margin-bottom: auto;
     transition: 1s;
+    display: block;
   }
 
   .top {
@@ -43,6 +47,8 @@ export const StyledDashboardLeft = styled.div`
       padding: 5px;
       border-radius: 50%;
       background-color: #08363b;
+      background-size: cover;
+      background-position: center;
     }
 
     .dropdown {
@@ -69,8 +75,8 @@ export const StyledDashboardLeft = styled.div`
   }
 
   .avatar {
-    height: 50px;
-    width: 50px;
+    height: 60px;
+    width: 60px;
     border-radius: 50%;
     border: 2px royalblue solid;
     background-position: center;
@@ -142,14 +148,17 @@ export const StyledDashboardLeft = styled.div`
     width: 80px;
     font-size: 2rem;
     border-radius: 50%;
-    position: absolute;
-    right: 1rem;
+    position: sticky;
+    right: 0;
+    left: 80%;
     bottom: 5%;
     z-index: 999999999;
+    margin-left: auto;
   }
 
   @media (max-width: 1000px) {
     height: 100vh;
+    border: none;
 
     .message-cards {
       margin-bottom: 2rem;

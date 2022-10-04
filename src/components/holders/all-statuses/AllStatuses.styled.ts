@@ -7,7 +7,8 @@ export const StyledAllStatuses = styled.div`
   height: 100vh;
 
   .top-part {
-    margin: 1rem 2rem;
+    margin: 1rem;
+    margin-top: 0;
 
     .prev {
       color: #fff;
@@ -38,7 +39,7 @@ export const StyledAllStatuses = styled.div`
   .status-card {
     padding: 10px;
     gap: 0.5rem;
-    margin: 1rem 1rem;
+    margin: 1rem 0;
     cursor: pointer;
 
     svg {
@@ -71,14 +72,15 @@ export const StyledAllStatuses = styled.div`
 
   .plus-icon {
     font-size: 4rem;
-    position: absolute;
-    bottom: 5rem;
+    position: sticky;
+    bottom: 5%;
     right: 2rem;
     color: green;
     background-color: #fff;
     border: 2px #fff solid;
     border-radius: 50%;
     display: none;
+    margin-left: auto;
   }
 
   @media (max-width: 1000px) {

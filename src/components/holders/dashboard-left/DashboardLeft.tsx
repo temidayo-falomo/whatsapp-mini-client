@@ -219,13 +219,13 @@ function DashboardLeft() {
             </div>
           );
         })}
-      </div>
 
-      <div
-        className="chat-circle grid-center pointer"
-        onClick={() => setDetailedUsersShow(!detailedUsersShow)}
-      >
-        <BsChatRightTextFill className="pointer" />
+        <div
+          className="chat-circle grid-center pointer"
+          onClick={() => setDetailedUsersShow(!detailedUsersShow)}
+        >
+          <BsChatRightTextFill className="pointer" />
+        </div>
       </div>
     </StyledDashboardLeft>
   );

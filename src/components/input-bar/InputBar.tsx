@@ -76,7 +76,7 @@ function InputBar() {
         </button>
       </form>
 
-      <BsFillMicFill className="pointer" />
+      {/* <BsFillMicFill className="pointer" /> */}
     </StyledInputBar>
   );
 }

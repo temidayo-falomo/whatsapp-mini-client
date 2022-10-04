@@ -2,12 +2,17 @@ import styled from "styled-components";
 
 export const StyledAddStatusRight = styled.form`
   position: relative;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   .add-top {
     justify-content: flex-end;
     width: 90%;
     margin: 2rem auto;
     font-size: 2rem;
+    margin-top: 3rem;
 
     .pointer {
       display: none;
@@ -15,11 +20,7 @@ export const StyledAddStatusRight = styled.form`
   }
 
   .footer {
-    position: absolute;
-    bottom: 2rem;
-    left: 0;
-    right: 0;
-    margin: auto;
+    margin: 2rem auto;
     font-size: 2rem;
     gap: 4rem;
     width: 90%;
@@ -50,12 +51,13 @@ export const StyledAddStatusRight = styled.form`
 
   .mid {
     padding: 20px;
-    height: 85vh;
     margin-top: 2rem;
     text-align: center;
     display: flex;
     align-items: center;
     justify-content: center;
+    margin: auto;
+    align-self: center;
 
     input {
       background-color: transparent;
@@ -92,6 +94,10 @@ export const StyledAddStatusRight = styled.form`
     height: 100vh;
     width: 100%;
     overflow: hidden !important;
+
+    .footer {
+      gap: 2rem;
+    }
 
     .add-top {
       .pointer {
