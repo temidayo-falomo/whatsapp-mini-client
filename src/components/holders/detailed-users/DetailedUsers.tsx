@@ -53,7 +53,13 @@ function DetailedUsers(props: any) {
                         Add Friend
                       </button>
                     ) : (
-                      <button>Remove</button>
+                      <button
+                        onClick={() =>
+                          props.removeFriend(auth.currentUser?.uid, data.id)
+                        }
+                      >
+                        Remove
+                      </button>
                     )}
                   </div>
                 )}

@@ -45,11 +45,7 @@ function DashboardLeft() {
   const usersCollectionRef = collection(db, "users");
 
   const getAllUsers = async () => {
-    // const data = await getDocs(usersCollectionRef);
-    // setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-
     const q = query(usersCollectionRef);
-
     onSnapshot(q, (snapshot) => {
       const usrs = snapshot.docs.map((doc) => ({
         id: doc.id,
@@ -81,11 +77,29 @@ function DashboardLeft() {
         ],
       };
 
+      //Check If Friend to be added is current user.
+
       if (friendId !== auth.currentUser?.uid) {
         updateDoc(userDoc, newFriend);
       } else {
         console.log("You can't text yourself!");
       }
+    });
+  };
+
+  const removeFriend = async (userId: any, friendId: any) => {
+    const userDoc = doc(db, "users", userId);
+
+    await getDoc(userDoc).then((doc: any) => {
+      const removedFriend = {
+        friends: [
+          ...doc.data().friends?.filter((val: any) => {
+            return val.friendId !== friendId;
+          }),
+        ],
+      };
+
+      updateDoc(userDoc, removedFriend);
     });
   };
 
@@ -161,6 +175,7 @@ function DashboardLeft() {
           detailedUsersShow={detailedUsersShow}
           setDetailedUsersShow={setDetailedUsersShow}
           addFriendToUser={addFriendToUser}
+          removeFriend={removeFriend}
         />
       </div>
 
@@ -198,6 +213,7 @@ function DashboardLeft() {
               {...data}
               key={data.id}
               addFriendToUser={addFriendToUser}
+              removeFriend={removeFriend}
             />
           );
         })}
@@ -228,9 +244,9 @@ function DashboardLeft() {
           );
         })}
         {friendsCards.length === 0 && (
-          <p style={{ margin: "auto", lineHeight: "30px" }}>
+          <p style={{ margin: "auto", lineHeight: "27px" }}>
             You haven't added any Friends yet.
-            <br /> Click on a user profile to Quick Add
+            <br /> Click on a user profile to Quick Add.
           </p>
         )}
       </div>

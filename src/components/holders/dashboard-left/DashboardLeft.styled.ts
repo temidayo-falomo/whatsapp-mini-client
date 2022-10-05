@@ -23,20 +23,16 @@ export const StyledDashboardLeft = styled.div`
   .detailed-users {
     background: rgba(255, 255, 255, 0.2);
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    height: 90vh;
     width: 100%;
-    position: fixed;
+    position: absolute;
     z-index: 99999;
-    bottom: -100vh;
+    bottom: 0;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
-    transition: 1s;
-    overflow: hidden;
+    transition: 0.5s;
     background-color: #000;
-    border: 2px #041a1d solid;
     overflow: auto;
+    height: 0;
 
     ::-webkit-scrollbar {
       width: 0;
@@ -46,8 +42,10 @@ export const StyledDashboardLeft = styled.div`
   .detailed-users.active {
     bottom: 0;
     margin-bottom: auto;
-    transition: 1s;
+    transition: 0.5s;
     display: block;
+    height: 95vh;
+    border: 2px #041a1d solid;
   }
 
   .top {
@@ -135,13 +133,19 @@ export const StyledDashboardLeft = styled.div`
     }
 
     .user {
-      min-height: 70px;
-      min-width: 70px;
+      width: 80px;
+      height: 80px;
+      min-height: 80px;
+      min-width: 80px;
       border: 2px royalblue solid;
       border-radius: 50%;
       background-color: rebeccapurple;
       display: grid;
       place-content: center;
+      overflow: hidden;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
 
       button {
         padding: 5px 9px;
@@ -182,6 +186,10 @@ export const StyledDashboardLeft = styled.div`
   @media (max-width: 1000px) {
     height: 100vh;
     border: none;
+
+    .detailed-users.active {
+      position: fixed;
+    }
 
     .message-cards {
       margin-bottom: 2rem;

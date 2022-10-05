@@ -37,7 +37,13 @@ function UserCircle(props: any) {
               Add
             </button>
           ) : (
-            <button>Remove</button>
+            <button
+              onClick={() =>
+                props.removeFriend(auth.currentUser?.uid, props.id)
+              }
+            >
+              Remove
+            </button>
           )}
         </div>
       )}
