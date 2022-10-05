@@ -7,7 +7,6 @@ import { StyledMessageCard } from "./MessageCard.styled";
 function MessageCard(props: any) {
   const [lastMsg1, setLastMsg1] = useState<any>();
   const [lastMsg2, setLastMsg2] = useState<any>();
-  const [newMessageColor, setNewMessageColor] = useState(false);
 
   let time = new Date();
 
@@ -23,13 +22,12 @@ function MessageCard(props: any) {
   useEffect(() => {
     // queries
     const q1 = query(colRef, where("senderId", "==", auth.currentUser?.uid));
+    const q2 = query(colRef, where("receiverId", "==", auth.currentUser?.uid));
 
-    // realtime collection's data
     onSnapshot(q1, (snapshot) => {
       let msgs: any = [];
       snapshot.docs.forEach((doc) => {
         msgs.push({ ...doc.data(), id: doc.id });
-        // setNewMessageColor(true);
       });
 
       setLastMsg1(
@@ -44,14 +42,11 @@ function MessageCard(props: any) {
       );
     });
 
-    const q2 = query(colRef, where("receiverId", "==", auth.currentUser?.uid));
     onSnapshot(q2, (snapshot) => {
       let msgs: any = [];
 
-      // setNewMessageColor(true);
       snapshot.docs.forEach((doc) => {
         msgs.push({ ...doc.data(), id: doc.id });
-        // setNewMessageColor(true);
       });
 
       setLastMsg2(
@@ -67,15 +62,11 @@ function MessageCard(props: any) {
     });
   }, []);
 
-  // useEffect(()=> {
-  //  time = new Date();
+  // !TODO: Need To Come Back And Sort Out All These Messy Code.
+  //* The Blood Of Jesus.
 
-  //  realTime = time.toLocaleString("en-US", {
-  //     hour: "numeric",
-  //     minute: "numeric",
-  //     hour12: true,
-  //   });
-  // })
+  // t sortFn = (a, b) => a.m - <b className="time">
+  // aray.sort(sortFn)
 
   return (
     <StyledMessageCard>
@@ -89,6 +80,10 @@ function MessageCard(props: any) {
           <p
             className={
               lastMsg1 &&
+              auth.currentUser?.uid !==
+                [...lastMsg1, ...lastMsg2].sort(
+                  (a: any, b: any) => a.timestamp - b.timestamp
+                )[[...lastMsg1, ...lastMsg2].length - 1]?.senderId &&
               realTime ===
                 [...lastMsg1, ...lastMsg2].sort(
                   (a: any, b: any) => a.timestamp - b.timestamp
@@ -118,6 +113,10 @@ function MessageCard(props: any) {
         <BsCheckAll
           className={
             lastMsg1 &&
+            auth.currentUser?.uid !==
+              [...lastMsg1, ...lastMsg2].sort(
+                (a: any, b: any) => a.timestamp - b.timestamp
+              )[[...lastMsg1, ...lastMsg2].length - 1]?.senderId &&
             realTime ===
               [...lastMsg1, ...lastMsg2].sort(
                 (a: any, b: any) => a.timestamp - b.timestamp

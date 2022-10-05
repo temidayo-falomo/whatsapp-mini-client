@@ -140,7 +140,13 @@ export const StyledDashboardLeft = styled.div`
       border: 2px royalblue solid;
       border-radius: 50%;
       background-color: rebeccapurple;
-      cursor: pointer;
+      display: grid;
+      place-content: center;
+
+      button {
+        padding: 5px 9px;
+        border-radius: 10px;
+      }
     }
   }
 

@@ -18,6 +18,7 @@ import {
 import { auth, db } from "../../../firebase/firebase-config";
 import { Link } from "react-router-dom";
 import DetailedUsers from "../detailed-users/DetailedUsers";
+import UserCircle from "../../user-circle/UserCircle";
 
 function DashboardLeft() {
   const {
@@ -32,7 +33,6 @@ function DashboardLeft() {
     newMsg2,
     setNewMsg1,
     setNewMsg2,
-    setCurrTime,
   } = useContext(AppContext);
 
   const [friendsList, setFriendsList] = useState<any>();
@@ -45,8 +45,18 @@ function DashboardLeft() {
   const usersCollectionRef = collection(db, "users");
 
   const getAllUsers = async () => {
-    const data = await getDocs(usersCollectionRef);
-    setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    // const data = await getDocs(usersCollectionRef);
+    // setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+
+    const q = query(usersCollectionRef);
+
+    onSnapshot(q, (snapshot) => {
+      const usrs = snapshot.docs.map((doc) => ({
+        id: doc.id,
+        ...doc.data(),
+      }));
+      setUsers(usrs);
+    });
   };
 
   const addFriendToUser = async (
@@ -150,6 +160,7 @@ function DashboardLeft() {
         <DetailedUsers
           detailedUsersShow={detailedUsersShow}
           setDetailedUsersShow={setDetailedUsersShow}
+          addFriendToUser={addFriendToUser}
         />
       </div>
 
@@ -183,19 +194,11 @@ function DashboardLeft() {
       <div className="users row gap-1">
         {users?.map((data: any) => {
           return (
-            <div
+            <UserCircle
+              {...data}
               key={data.id}
-              className="user"
-              style={{ backgroundImage: `url(${data.userAvatar})` }}
-              onClick={() =>
-                addFriendToUser(
-                  auth.currentUser?.uid,
-                  data.userAvatar,
-                  data.id,
-                  data.username
-                )
-              }
-            ></div>
+              addFriendToUser={addFriendToUser}
+            />
           );
         })}
       </div>
@@ -220,10 +223,16 @@ function DashboardLeft() {
                 )
               }
             >
-              <MessageCard {...data} />
+              <MessageCard {...data} index={index} />
             </div>
           );
         })}
+        {friendsCards.length === 0 && (
+          <p style={{ margin: "auto", lineHeight: "30px" }}>
+            You haven't added any Friends yet.
+            <br /> Click on a user profile to Quick Add
+          </p>
+        )}
       </div>
 
       <div

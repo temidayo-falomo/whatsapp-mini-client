@@ -1,5 +1,7 @@
+import { doc, getDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import { auth, db } from "./firebase/firebase-config";
 import GlobalStyle from "./GlobalStyles";
 import { AppContext } from "./helper/Context";
 import Dashboard from "./pages/dashboard/Dashboard";
@@ -13,6 +15,7 @@ function App() {
   const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState();
+  let id: any = auth.currentUser && auth.currentUser.uid;
 
   //
 
@@ -63,21 +66,24 @@ function App() {
   const [newMsg1, setNewMsg1] = useState([]);
   const [newMsg2, setNewMsg2] = useState([]);
 
-  var time = new Date();
-
-  let realTime = time.toLocaleString("en-US", {
-    hour: "numeric",
-    minute: "numeric",
-    hour12: true,
-  });
-
-  const [currTime, setCurrTime] = useState(realTime);
-
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
     }, 3000);
   }, []);
+
+  useEffect(() => {
+    const getUser = async () => {
+      const userDoc = doc(db, "users", id);
+      await getDoc(userDoc).then((doc: any) => {
+        setUser(doc.data());
+      });
+    };
+
+    if (id) {
+      getUser();
+    }
+  }, [auth.currentUser?.uid, users]);
 
   if (loading) {
     return <Loading />;
@@ -124,8 +130,6 @@ function App() {
         setDisplaySearch,
         searchText,
         setSearchText,
-        currTime,
-        setCurrTime,
       }}
     >
       <div className="App">

@@ -5,7 +5,7 @@ import { AppContext } from "../../../helper/Context";
 import { StyledDetailedUsers } from "./DetailedUsers.styled";
 
 function DetailedUsers(props: any) {
-  const { users } = useContext(AppContext);
+  const { user, users } = useContext(AppContext);
 
   return (
     <StyledDetailedUsers>
@@ -32,11 +32,30 @@ function DetailedUsers(props: any) {
                   ></div>
                   <div className="col gap-5">
                     <h3 className="cap">{data.username}</h3>
-                    <span>{data.userAbout ? data.userAbout : "Available."}</span>
+                    <span>
+                      {data.userAbout ? data.userAbout : "Available."}
+                    </span>
                   </div>
                 </div>
                 {auth.currentUser?.uid !== data.id && (
-                  <button>Add Friend</button>
+                  <div>
+                    {!user?.friends.some((e: any) => data.id === e.friendId) ? (
+                      <button
+                        onClick={() =>
+                          props.addFriendToUser(
+                            auth.currentUser?.uid,
+                            data.userAvatar,
+                            data.id,
+                            data.username
+                          )
+                        }
+                      >
+                        Add Friend
+                      </button>
+                    ) : (
+                      <button>Remove</button>
+                    )}
+                  </div>
                 )}
               </div>
             );
