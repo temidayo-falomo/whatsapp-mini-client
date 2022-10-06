@@ -1,6 +1,6 @@
 import { doc, getDoc } from "firebase/firestore";
 import React, { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { auth, db } from "./firebase/firebase-config";
 import GlobalStyle from "./GlobalStyles";
 import { AppContext } from "./helper/Context";
@@ -15,6 +15,9 @@ function App() {
   const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState();
+
+  let navigate = useNavigate();
+
   let id: any = auth.currentUser && auth.currentUser.uid;
 
   //
@@ -67,12 +70,6 @@ function App() {
   const [newMsg2, setNewMsg2] = useState([]);
 
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-  }, []);
-
-  useEffect(() => {
     const getUser = async () => {
       const userDoc = doc(db, "users", id);
       await getDoc(userDoc).then((doc: any) => {
@@ -84,6 +81,21 @@ function App() {
       getUser();
     }
   }, [auth.currentUser?.uid, users]);
+
+  useEffect(() => {
+    if (
+      !localStorage.getItem("isAuth") ||
+      localStorage.getItem("isAuth") === "false"
+    ) {
+      navigate("/login");
+    }
+  }, []);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  }, []);
 
   if (loading) {
     return <Loading />;

@@ -10,7 +10,7 @@ function Dashboard() {
   const { friendId } = useContext(AppContext);
   return (
     <StyledDashboard>
-      <DashboardLeft />
+      {auth.currentUser?.uid && <DashboardLeft />}
       {friendId ? <DashboardRight /> : <DashboardRightErr />}
     </StyledDashboard>
   );

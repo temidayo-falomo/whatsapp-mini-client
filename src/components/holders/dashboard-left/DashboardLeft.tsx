@@ -243,7 +243,7 @@ function DashboardLeft() {
             </div>
           );
         })}
-        {friendsCards.length === 0 && (
+        {friendsCards?.length === 0 && (
           <p style={{ margin: "auto", lineHeight: "27px" }}>
             You haven't added any Friends yet.
             <br /> Click on a user profile to Quick Add.

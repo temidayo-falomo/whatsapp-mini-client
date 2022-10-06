@@ -9,7 +9,7 @@ export const StyledDashboardRight = styled.div`
   justify-content: space-between;
 
   @media (max-width: 1000px) {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     z-index: 9999999999999;
     background-color: #000;

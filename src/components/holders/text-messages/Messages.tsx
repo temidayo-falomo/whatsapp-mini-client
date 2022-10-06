@@ -22,6 +22,14 @@ function Messages() {
     await deleteDoc(messageDc);
   };
 
+  const handleMouseOver = () => {
+    setDisplayDelete(true);
+  };
+
+  const handleMouseOut = () => {
+    setDisplayDelete(false);
+  };
+
   return (
     <StyledMessages>
       <ScrollToBottom className="heigh">
@@ -58,7 +66,8 @@ function Messages() {
                       ? "bubble-right"
                       : "bubble-left"
                   }
-                  onClick={() => setDisplayDelete(!displayDelete)}
+                  onMouseOver={handleMouseOver}
+                  onMouseOut={handleMouseOut}
                 >
                   {data.message}
                   <span>{data.sentTime}</span>
