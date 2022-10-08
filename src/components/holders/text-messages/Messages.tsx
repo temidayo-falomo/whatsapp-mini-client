@@ -22,13 +22,13 @@ function Messages() {
     await deleteDoc(messageDc);
   };
 
-  const handleMouseOver = () => {
-    setDisplayDelete(true);
-  };
+  // const handleMouseOver = () => {
+  //   setDisplayDelete(true);
+  // };
 
-  const handleMouseOut = () => {
-    setDisplayDelete(false);
-  };
+  // const handleMouseOut = () => {
+  //   // setDisplayDelete(false);
+  // };
 
   return (
     <StyledMessages>
@@ -44,7 +44,7 @@ function Messages() {
             );
           })
           .filter((data: any) => {
-            if (searchText == "") {
+            if (searchText === "") {
               return data;
             } else if (
               data.message.toLowerCase().includes(searchText.toLowerCase())
@@ -66,8 +66,7 @@ function Messages() {
                       ? "bubble-right"
                       : "bubble-left"
                   }
-                  onMouseOver={handleMouseOver}
-                  onMouseOut={handleMouseOut}
+                  onClick={() => setDisplayDelete(!displayDelete)}
                 >
                   {data.message}
                   <span>{data.sentTime}</span>

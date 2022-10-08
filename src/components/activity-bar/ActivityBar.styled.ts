@@ -6,7 +6,9 @@ export const StyledActivityBar = styled.div`
   background-color: #000;
   display: flex;
   align-items: center;
-  position: relative;
+  position: absolute;
+  top: 0;
+  z-index: 999;
 
   .back {
     font-size: 2rem;

@@ -2,17 +2,21 @@ import styled from "styled-components";
 
 export const StyledMessages = styled.div`
   width: 100%;
-  height: 100%;
+  min-height: 100vh;
+  overflow: hidden;
 
   .heigh {
-    height: 80vh;
+    height: 90vh;
+    width: 100% !important;
+    min-width: 100% !important;
     padding: 20px;
-    margin: auto;
     display: flex;
     gap: 2rem;
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
+    margin-top: 4rem;
+    padding-bottom: 4rem;
   }
 
   .bubble-left {

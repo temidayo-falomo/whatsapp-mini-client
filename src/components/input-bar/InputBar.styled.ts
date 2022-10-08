@@ -8,11 +8,13 @@ export const StyledInputBar = styled.div`
   margin-top: 1rem;
   display: flex;
   justify-content: space-between;
+  position: absolute;
+  bottom: 0;
+  z-index: 9999;
 
   align-items: center;
   gap: 2rem;
-  position: relative;
-
+  
   .emojis {
     position: absolute;
     bottom: 80px;

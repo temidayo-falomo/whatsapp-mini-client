@@ -92,6 +92,7 @@ function MessageCard(props: any) {
                 : ""
             }
           >
+            {/* You:  */}
             {lastMsg1 &&
               lastMsg2 &&
               [...lastMsg1, ...lastMsg2].sort(

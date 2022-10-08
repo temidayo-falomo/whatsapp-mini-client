@@ -12,6 +12,7 @@ import Settings from "./pages/settings/Settings";
 import StatusUploads from "./pages/status-uploads/StatusUploads";
 
 function App() {
+  // Global States x Variables
   const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState();
@@ -68,6 +69,8 @@ function App() {
 
   const [newMsg1, setNewMsg1] = useState([]);
   const [newMsg2, setNewMsg2] = useState([]);
+
+  //End of Global States & Variables
 
   useEffect(() => {
     const getUser = async () => {

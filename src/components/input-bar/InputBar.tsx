@@ -1,8 +1,7 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { MdEmojiEmotions } from "react-icons/md";
 import { StyledInputBar } from "./InputBar.styled";
 import { FaPaperclip } from "react-icons/fa";
-import { BsFillMicFill } from "react-icons/bs";
 import { auth, db } from "../../firebase/firebase-config";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import bcrypt from "bcryptjs";
@@ -16,6 +15,7 @@ function InputBar() {
 
   const [showEmojis, setShowEmojis] = useState(false);
   const [clicked, setClicked] = useState(false);
+  const [typing, setTyping] = useState(false);
 
   const messagesCollectionRef: any = collection(db, "messages");
 
@@ -44,6 +44,12 @@ function InputBar() {
     await addDoc(messagesCollectionRef, msgObj);
   };
 
+  useEffect(() => {
+    if (messageText === "") {
+      setTyping(false);
+    }
+  }, [typing, messageText]);
+
   return (
     <StyledInputBar>
       <MdEmojiEmotions
@@ -69,11 +75,16 @@ function InputBar() {
           placeholder="Type A Message"
           value={messageText}
           required
-          onChange={(e) => setMessageText(e.target.value)}
+          onChange={(e) => {
+            setMessageText(e.target.value);
+            setTyping(true);
+          }}
         />
-        <button className="grid-center">
-          <AiOutlineSend className="send" />
-        </button>
+        {typing && (
+          <button className="grid-center">
+            <AiOutlineSend className="send" />
+          </button>
+        )}
       </form>
 
       {/* <BsFillMicFill className="pointer" /> */}

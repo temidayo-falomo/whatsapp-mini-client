@@ -40,6 +40,7 @@ function DashboardLeft() {
   const [number, setNumber] = useState("disp");
   const [dropdown, setDropdown] = useState(false);
   const [detailedUsersShow, setDetailedUsersShow] = useState(false);
+  const [searchFriendsText, setSearchFriendsText] = useState("");
 
   // users collection
   const usersCollectionRef = collection(db, "users");
@@ -114,7 +115,6 @@ function DashboardLeft() {
     setFriendName(paramName);
     setNumber(paramIndex);
     setDisplayDelete(false);
-    // setCurrTime("Hello");
   };
 
   useEffect(() => {
@@ -220,29 +220,45 @@ function DashboardLeft() {
       </div>
 
       <div className="search-row">
-        <input type="search" placeholder="Search or start a new chat" />
+        <input
+          type="search"
+          placeholder="Search or start a new chat"
+          onChange={(e) => setSearchFriendsText(e.target.value)}
+        />
         <div className="search-dropdown"></div>
       </div>
 
       <div className="message-cards">
-        {friendsCards?.map((data: any, index: any) => {
-          return (
-            <div
-              key={index}
-              className={`normal-card ${index === number && "card-active"}`}
-              onClick={() =>
-                handleCard(
-                  data.friendId,
-                  data.friendAvatar,
-                  data.friendName,
-                  index
-                )
-              }
-            >
-              <MessageCard {...data} index={index} />
-            </div>
-          );
-        })}
+        {friendsCards
+          ?.filter((data: any) => {
+            if (searchFriendsText === "") {
+              return data;
+            } else if (
+              data.friendName
+                .toLowerCase()
+                .includes(searchFriendsText.toLowerCase())
+            ) {
+              return data;
+            }
+          })
+          .map((data: any, index: any) => {
+            return (
+              <div
+                key={index}
+                className={`normal-card ${index === number && "card-active"}`}
+                onClick={() =>
+                  handleCard(
+                    data.friendId,
+                    data.friendAvatar,
+                    data.friendName,
+                    index
+                  )
+                }
+              >
+                <MessageCard {...data} index={index} />
+              </div>
+            );
+          })}
         {friendsCards?.length === 0 && (
           <p style={{ margin: "auto", lineHeight: "27px" }}>
             You haven't added any Friends yet.
