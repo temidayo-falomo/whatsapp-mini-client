@@ -20,9 +20,9 @@ function DetailedUsers(props: any) {
 
       <div className="det-col col">
         {users
-          ?.slice(0)
-          .reverse()
-          .map((data: any) => {
+          // ?.slice(0)
+          // .reverse()
+          ?.map((data: any) => {
             return (
               <div key={data.id} className="det-card row btw">
                 <div className="row center gap-1">

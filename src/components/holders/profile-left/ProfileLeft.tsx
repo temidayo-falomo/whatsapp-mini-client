@@ -1,16 +1,34 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { StyledProfileLeft } from "./ProfileLeft.styled";
 import { FiEdit } from "react-icons/fi";
-import { auth } from "../../../firebase/firebase-config";
+import { auth, db } from "../../../firebase/firebase-config";
 import { MdArrowBack } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { AppContext } from "../../../helper/Context";
+import { doc, updateDoc } from "firebase/firestore";
 
 function ProfileLeft() {
-  const { user, setUser } = useContext(AppContext);
+  const { user } = useContext(AppContext);
+  const [showEdit, setShowEdit] = useState(false);
+
+  const [username, setUserName] = useState(user?.username);
+  const [userAbout, setUserAbout] = useState(user?.userAbout);
+
+  const handleUpdateUserInfo = async (e: React.FormEvent<HTMLFormElement>) => {
+    // setUserName("")
+    // setUserAbout("")
+    setShowEdit(!showEdit);
+    e.preventDefault();
+    let id: any = auth.currentUser?.uid;
+    const userDoc = doc(db, "users", id);
+    await updateDoc(userDoc, {
+      userAbout,
+      username,
+    });
+  };
 
   return (
-    <StyledProfileLeft>
+    <StyledProfileLeft onSubmit={(e: any) => handleUpdateUserInfo(e)}>
       <div className="top row gap-1 center">
         <Link
           to="/"
@@ -33,10 +51,23 @@ function ProfileLeft() {
       <div className="rect col">
         <div className="row btw">
           <span>Your Name</span>
-          <FiEdit className="pointer" />
+          <FiEdit className="pointer" onClick={() => setShowEdit(!showEdit)} />
         </div>
         <div className="col">
-          <h5 className="cap">{user?.username}</h5>
+          {!showEdit ? (
+            <h5 className="cap">{user?.username}</h5>
+          ) : (
+            <div className="row center btw gap-1">
+              <input
+                type="text"
+                style={{ width: "100%", height: "100%" }}
+                placeholder={user?.username}
+                value={username}
+                onChange={(e) => setUserName(e.target.value)}
+              />
+              <button>Send</button>
+            </div>
+          )}
           <p>
             This is not your username or pin. This name will be visibile to your
             WhatsApp contacts.
@@ -47,10 +78,23 @@ function ProfileLeft() {
       <div className="rect col">
         <div className="row btw">
           <span>About</span>
-          <FiEdit className="pointer" />
+          <FiEdit className="pointer" onClick={() => setShowEdit(!showEdit)} />
         </div>
         <div className="col">
-          <p>{user?.userAbout ? user.userAbout : "Available."}</p>
+          {!showEdit ? (
+            <p>{user?.userAbout}</p>
+          ) : (
+            <div className="row center btw gap-1">
+              <input
+                type="text"
+                style={{ width: "100%" }}
+                placeholder={user?.userAbout}
+                value={userAbout}
+                onChange={(e) => setUserAbout(e.target.value)}
+              />
+              <button>Send</button>
+            </div>
+          )}
         </div>
       </div>
     </StyledProfileLeft>

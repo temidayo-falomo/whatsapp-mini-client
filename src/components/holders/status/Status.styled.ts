@@ -105,6 +105,15 @@ export const StyledStatus = styled.div`
     }
   }
 
+  .del {
+    position: absolute;
+    bottom: 2rem;
+
+    :hover {
+      color: orangered;
+    }
+  }
+
   .carousel {
     height: 100vh;
     width: 100% !important;

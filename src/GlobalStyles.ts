@@ -38,6 +38,10 @@ const GlobalStyle = createGlobalStyle`
     list-style: none;
   }
 
+  input {
+    outline: none;
+  }
+
   .row {
     display: flex;
   }

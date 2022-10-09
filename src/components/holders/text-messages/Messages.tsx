@@ -22,13 +22,9 @@ function Messages() {
     await deleteDoc(messageDc);
   };
 
-  // const handleMouseOver = () => {
-  //   setDisplayDelete(true);
-  // };
-
-  // const handleMouseOut = () => {
-  //   // setDisplayDelete(false);
-  // };
+  const handleMouseOut = () => {
+    setDisplayDelete(false);
+  };
 
   return (
     <StyledMessages>

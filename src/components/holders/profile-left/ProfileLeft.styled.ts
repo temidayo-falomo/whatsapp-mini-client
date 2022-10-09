@@ -1,10 +1,20 @@
 import styled from "styled-components";
 
-export const StyledProfileLeft = styled.div`
+export const StyledProfileLeft = styled.form`
   padding: 20px;
   border-right: 1px rgb(43, 42, 42) solid;
   align-items: center;
   overflow: auto;
+
+  input {
+    padding: 10px;
+    margin-bottom: 1rem;
+  }
+
+  button {
+    height: 100%;
+    padding: 10px;
+  }
 
   .top {
     color: #fff;
@@ -40,5 +50,4 @@ export const StyledProfileLeft = styled.div`
       width: 85%;
     }
   }
-
 `;

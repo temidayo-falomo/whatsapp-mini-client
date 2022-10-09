@@ -5,8 +5,15 @@ import "react-slideshow-image/dist/styles.css";
 import { AppContext } from "../../../helper/Context";
 import { MdOutlineCancel } from "react-icons/md";
 import { useState } from "react";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  deleteDoc,
+  doc,
+  serverTimestamp,
+} from "firebase/firestore";
 import { auth, db } from "../../../firebase/firebase-config";
+import { AiFillDelete } from "react-icons/ai";
 
 function Status() {
   const { statusByUser, setDisplayStatus, filteredStatuses } =
@@ -52,13 +59,17 @@ function Status() {
       senderId: auth.currentUser?.uid,
       receiverImg: receiverImg,
       receiverId: receiverId,
-      message:
-        `Replied To Status "${statusRepliedTo}" : ` + " " + replyText,
+      message: `Replied To Status "${statusRepliedTo}" : ` + " " + replyText,
       sentTime: realTime,
       timestamp: serverTimestamp(),
     };
 
     await addDoc(messagesCollectionRef, msgObj);
+  };
+
+  const handleDeleteStatus = async (statusId: string) => {
+    const statusDoc = doc(db, "status-uploads", statusId);
+    await deleteDoc(statusDoc);
   };
 
   return (
@@ -98,10 +109,14 @@ function Status() {
                       />
                     </div>
 
-                    <span className="status-text" style={{fontFamily: `${data.fontStyle}`}}>{data.statusText}</span>
+                    <span
+                      className="status-text"
+                      style={{ fontFamily: `${data.fontStyle}` }}
+                    >
+                      {data.statusText}
+                    </span>
 
-
-                    {auth.currentUser?.uid !== data.userId && (
+                    {auth.currentUser?.uid !== data.userId ? (
                       <form
                         className="footer"
                         onSubmit={(e) =>
@@ -122,6 +137,14 @@ function Status() {
                         />
                         <button>Send</button>
                       </form>
+                    ) : (
+                      <div
+                        className="del row center pointer"
+                        onClick={() => handleDeleteStatus(data.id)}
+                      >
+                        Delete
+                        <AiFillDelete />
+                      </div>
                     )}
                   </div>
                 </div>

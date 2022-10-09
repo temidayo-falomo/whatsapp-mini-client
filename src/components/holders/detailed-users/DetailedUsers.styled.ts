@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const StyledDetailedUsers = styled.div`
-
   .det-top {
     padding: 20px;
 
@@ -33,7 +32,7 @@ export const StyledDetailedUsers = styled.div`
   .det-card {
     padding: 20px 0;
     align-items: center;
-    gap: .5rem;
+    gap: 0.5rem;
 
     button {
       padding: 10px;
@@ -45,6 +44,9 @@ export const StyledDetailedUsers = styled.div`
       width: 70px;
       border-radius: 5px;
       background-color: rebeccapurple;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
     }
   }
 `;
