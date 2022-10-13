@@ -3,6 +3,7 @@ import styled from "styled-components";
 export const StyledDetailedUsers = styled.div`
   .det-top {
     padding: 20px;
+    margin-top: 2rem;
 
     h4 {
       font-size: 1.5rem;

@@ -6,6 +6,8 @@ import { AppContext } from "../../../helper/Context";
 import { StyledAllStatuses } from "./AllStatuses.styled";
 import { GrLinkPrevious } from "react-icons/gr";
 import { BsPlusCircleFill } from "react-icons/bs";
+import { FaPen } from "react-icons/fa";
+import { HiPencil } from "react-icons/hi";
 
 function AllStatuses(props: any) {
   const {
@@ -80,7 +82,7 @@ function AllStatuses(props: any) {
           );
         })}
 
-      <BsPlusCircleFill
+      <HiPencil
         className="pointer plus-icon"
         onClick={() => props.setShowAdd(true)}
       />

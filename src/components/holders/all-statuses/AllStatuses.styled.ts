@@ -17,6 +17,7 @@ export const StyledAllStatuses = styled.div`
       border-radius: 50%;
       padding: 5px;
       font-size: 2rem;
+      font-weight: 600;
     }
   }
 
@@ -75,16 +76,18 @@ export const StyledAllStatuses = styled.div`
     position: fixed;
     bottom: 5%;
     right: 2rem;
-    color: green;
-    background-color: #fff;
+    color: #fff;
+    background-color: green;
     border: 2px #fff solid;
     border-radius: 50%;
     display: none;
     margin-left: auto;
+    padding: 5px;
   }
 
   @media (max-width: 1000px) {
     overflow: auto;
+    height: 100vh;
 
     .plus-icon {
       display: block;
