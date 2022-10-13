@@ -14,7 +14,7 @@ export const StyledDashboardRight = styled.div`
     bottom: 0;
     z-index: 9999999999999;
     background-color: #000;
-    height: 100vh;
+    height: 96vh;
     width: 100%;
     overflow: hidden !important;
   }

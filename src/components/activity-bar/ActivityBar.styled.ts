@@ -9,6 +9,7 @@ export const StyledActivityBar = styled.div`
   position: absolute;
   top: 0;
   z-index: 999;
+  padding-top: 2rem;
 
   .back {
     font-size: 2rem;
@@ -43,7 +44,7 @@ export const StyledActivityBar = styled.div`
 
     .pointer {
       font-size: 2rem;
-      color: #09363b;
+      color: #008001;
     }
 
     input {
