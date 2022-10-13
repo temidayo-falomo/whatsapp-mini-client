@@ -57,7 +57,10 @@ function ProfileLeft() {
           {!showEdit ? (
             <h5 className="cap">{user?.username}</h5>
           ) : (
-            <div className="row center btw gap-1">
+            <div
+              className="row center btw gap-1"
+              style={{ marginBottom: "1rem" }}
+            >
               <input
                 type="text"
                 style={{ width: "100%", height: "100%" }}
@@ -84,7 +87,10 @@ function ProfileLeft() {
           {!showEdit ? (
             <p>{user?.userAbout}</p>
           ) : (
-            <div className="row center btw gap-1">
+            <div
+              className="row center btw gap-1"
+              style={{ marginBottom: "1rem" }}
+            >
               <input
                 type="text"
                 style={{ width: "100%" }}

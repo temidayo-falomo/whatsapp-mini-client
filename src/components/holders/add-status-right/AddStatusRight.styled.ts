@@ -12,7 +12,10 @@ export const StyledAddStatusRight = styled.form`
     width: 90%;
     margin: 2rem auto;
     font-size: 2rem;
-    margin-top: 3rem;
+    position: absolute;
+    top: 3%;
+    left: 0;
+    right: 0;
 
     .pointer {
       display: none;
@@ -87,11 +90,11 @@ export const StyledAddStatusRight = styled.form`
   }
 
   @media (max-width: 1000px) {
-    position: absolute;
+    position: fixed;
     bottom: 0;
     z-index: 9999999999999;
     background-color: #000;
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
     overflow: hidden !important;
 

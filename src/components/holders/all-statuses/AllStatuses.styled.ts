@@ -72,7 +72,7 @@ export const StyledAllStatuses = styled.div`
 
   .plus-icon {
     font-size: 4rem;
-    position: sticky;
+    position: fixed;
     bottom: 5%;
     right: 2rem;
     color: green;
@@ -84,6 +84,8 @@ export const StyledAllStatuses = styled.div`
   }
 
   @media (max-width: 1000px) {
+    overflow: auto;
+
     .plus-icon {
       display: block;
     }

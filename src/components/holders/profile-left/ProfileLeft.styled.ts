@@ -8,12 +8,15 @@ export const StyledProfileLeft = styled.form`
 
   input {
     padding: 10px;
-    margin-bottom: 1rem;
+    border-radius: 10px;
+    border: none;
   }
 
   button {
-    height: 100%;
     padding: 10px;
+    border-radius: 10px;
+    background-color: green;
+    color: #fff;
   }
 
   .top {
@@ -30,7 +33,6 @@ export const StyledProfileLeft = styled.form`
     height: 250px;
     width: 250px;
     border-radius: 50%;
-    border: 2px blue solid;
     margin: 2rem auto;
     background-position: center;
     background-size: cover;

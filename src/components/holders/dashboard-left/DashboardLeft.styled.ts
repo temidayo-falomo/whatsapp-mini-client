@@ -92,9 +92,9 @@ export const StyledDashboardLeft = styled.div`
     height: 60px;
     width: 60px;
     border-radius: 50%;
-    border: 2px royalblue solid;
     background-position: center;
     background-size: cover;
+    background-repeat: no-repeat;
   }
 
   .search-row {
@@ -150,6 +150,13 @@ export const StyledDashboardLeft = styled.div`
       button {
         padding: 5px 9px;
         border-radius: 10px;
+        font-weight: 600;
+        /* From https://css.glass */
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(5px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
       }
     }
   }
