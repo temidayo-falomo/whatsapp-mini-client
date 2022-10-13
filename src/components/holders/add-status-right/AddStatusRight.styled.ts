@@ -6,6 +6,7 @@ export const StyledAddStatusRight = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 2rem 0;
 
   .add-top {
     justify-content: flex-end;
@@ -13,7 +14,7 @@ export const StyledAddStatusRight = styled.form`
     margin: 2rem auto;
     font-size: 2.5rem;
     position: absolute;
-    top: 1rem;
+    top: 2% + 0.5rem;
     left: 0;
     right: 0;
 
@@ -92,7 +93,6 @@ export const StyledAddStatusRight = styled.form`
 
   @media (max-width: 1000px) {
     position: fixed;
-    top: auto;
     z-index: 9999999999999;
     background-color: #000;
     min-height: 100vh;

@@ -48,7 +48,7 @@ export const StyledAllStatuses = styled.div`
       max-width: 100px;
     }
     circle {
-      stroke: green;
+      stroke: rgb(196, 196, 196);
       stroke-width: 3;
     }
     .solid {
