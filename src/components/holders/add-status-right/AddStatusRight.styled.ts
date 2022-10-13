@@ -13,10 +13,10 @@ export const StyledAddStatusRight = styled.form`
     width: 90%;
     margin: 2rem auto;
     font-size: 2.5rem;
-    position: absolute;
     top: 2% + 0.5rem;
     left: 0;
     right: 0;
+    margin-top: 2.5rem;
 
     .pointer {
       display: none;

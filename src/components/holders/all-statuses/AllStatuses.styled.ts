@@ -9,14 +9,15 @@ export const StyledAllStatuses = styled.div`
   .top-part {
     margin: 1rem;
     margin-top: 1.5rem;
+    color: #fff !important;
+
+    a {
+      font-size: 2rem;
+      color: #fff !important;
+    }
 
     .prev {
-      color: #fff;
-      fill: #fff;
-      background-color: #fff;
-      border-radius: 50%;
-      padding: 5px;
-      font-size: 2rem;
+      color: #fff !important;
       font-weight: 600;
     }
   }
@@ -86,7 +87,7 @@ export const StyledAllStatuses = styled.div`
   }
 
   @media (max-width: 1000px) {
-    overflow: auto;
+    overflow-y: auto !important;
     height: 100vh;
 
     .plus-icon {

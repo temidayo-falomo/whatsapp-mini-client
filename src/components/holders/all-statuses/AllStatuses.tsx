@@ -5,9 +5,9 @@ import { auth, db } from "../../../firebase/firebase-config";
 import { AppContext } from "../../../helper/Context";
 import { StyledAllStatuses } from "./AllStatuses.styled";
 import { GrLinkPrevious } from "react-icons/gr";
-import { BsPlusCircleFill } from "react-icons/bs";
 import { FaPen } from "react-icons/fa";
 import { HiPencil } from "react-icons/hi";
+import { MdArrowBack } from "react-icons/md";
 
 function AllStatuses(props: any) {
   const {
@@ -43,11 +43,18 @@ function AllStatuses(props: any) {
 
   return (
     <StyledAllStatuses>
-      <div className="top-part row btw center">
-        <h2>User Statuses</h2>
-        <Link to="/">
-          <GrLinkPrevious className="prev" />
+      <div className="top-part row center gap-1">
+        <Link
+          to="/"
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          <MdArrowBack />
         </Link>
+        <h2>User Statuses</h2>
       </div>
 
       {allStatus

@@ -82,7 +82,7 @@ export const StyledStatus = styled.div`
     width: 80%;
     height: 60px;
     position: absolute;
-    bottom: 2rem;
+    bottom: 5rem;
     left: 10%;
     right: 0%;
     background-color: #fff;
@@ -107,7 +107,7 @@ export const StyledStatus = styled.div`
 
   .del {
     position: absolute;
-    bottom: 2rem;
+    bottom: 5rem;
 
     :hover {
       color: orangered;
