@@ -22,7 +22,6 @@ export const StyledDashboardLeft = styled.div`
 
   .detailed-users {
     background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     width: 100%;
     position: absolute;
     z-index: 99999;

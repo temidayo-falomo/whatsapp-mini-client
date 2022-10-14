@@ -5,6 +5,7 @@ export const StyledProfileLeft = styled.form`
   border-right: 1px rgb(43, 42, 42) solid;
   align-items: center;
   overflow: auto;
+  padding-bottom: 4rem;
 
   input {
     padding: 10px;
