@@ -88,7 +88,7 @@ export const StyledAllStatuses = styled.div`
 
   @media (max-width: 1000px) {
     overflow-y: auto !important;
-    height: 100vh;
+    min-height: 100vh;
 
     .plus-icon {
       display: block;
