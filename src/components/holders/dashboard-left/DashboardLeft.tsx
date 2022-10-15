@@ -9,7 +9,6 @@ import {
   collection,
   doc,
   getDoc,
-  getDocs,
   onSnapshot,
   query,
   updateDoc,
@@ -33,11 +32,12 @@ function DashboardLeft() {
     newMsg2,
     setNewMsg1,
     setNewMsg2,
+    number,
+    setNumber,
   } = useContext(AppContext);
 
   const [friendsList, setFriendsList] = useState<any>();
   const [friendsCards, setFriendsCards] = useState<any>([]);
-  const [number, setNumber] = useState("disp");
   const [dropdown, setDropdown] = useState(false);
   const [detailedUsersShow, setDetailedUsersShow] = useState(false);
   const [searchFriendsText, setSearchFriendsText] = useState("");
@@ -63,6 +63,7 @@ function DashboardLeft() {
     friendName: any
   ) => {
     const userDoc = doc(db, "users", userId);
+    var time = new Date();
 
     await getDoc(userDoc).then((doc: any) => {
       setFriendsList(doc.data().friends);
@@ -74,6 +75,8 @@ function DashboardLeft() {
             friendName,
             friendAvatar,
             friendId,
+            timestamp: time,
+            active: false,
           },
         ],
       };
@@ -230,7 +233,8 @@ function DashboardLeft() {
 
       <div className="message-cards">
         {friendsCards
-          ?.filter((data: any) => {
+          ?.sort((a: any, b: any) => a.timestamp - b.timestamp)
+          .filter((data: any) => {
             if (searchFriendsText === "") {
               return data;
             } else if (
@@ -241,6 +245,8 @@ function DashboardLeft() {
               return data;
             }
           })
+          .slice(0)
+          .reverse()
           .map((data: any, index: any) => {
             return (
               <div
@@ -260,7 +266,7 @@ function DashboardLeft() {
             );
           })}
         {friendsCards?.length === 0 && (
-          <p style={{ margin: "auto", lineHeight: "27px" }}>
+          <p style={{ margin: "auto", lineHeight: "26px" }}>
             You haven't added any Friends yet.
             <br /> Click on a user profile to Quick Add.
           </p>

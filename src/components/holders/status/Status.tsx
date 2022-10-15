@@ -10,13 +10,15 @@ import {
   collection,
   deleteDoc,
   doc,
+  getDoc,
   serverTimestamp,
+  updateDoc,
 } from "firebase/firestore";
 import { auth, db } from "../../../firebase/firebase-config";
 import { AiFillDelete } from "react-icons/ai";
 
 function Status() {
-  const { statusByUser, setDisplayStatus, filteredStatuses } =
+  const { statusByUser, setDisplayStatus, filteredStatuses, setNumber } =
     useContext(AppContext);
 
   const [active, setActive] = useState<number>();
@@ -41,7 +43,8 @@ function Status() {
     e: React.FormEvent<HTMLFormElement>,
     statusRepliedTo: any,
     receiverId: string,
-    receiverImg: string
+    receiverImg: string,
+    userId: any
   ) => {
     e.preventDefault();
     setReplyText("");
@@ -63,6 +66,23 @@ function Status() {
       sentTime: realTime,
       timestamp: serverTimestamp(),
     };
+
+    const userDoc = doc(db, "users", userId);
+
+    await getDoc(userDoc).then((doc: any) => {
+      let nuggle = doc.data().friends;
+
+      const newState = nuggle.map((obj: any) =>
+        obj.friendId === receiverId ? { ...obj, timestamp: time } : obj
+      );
+
+      const newFriend = {
+        friends: newState,
+      };
+
+      updateDoc(userDoc, newFriend);
+      setNumber(0);
+    });
 
     await addDoc(messagesCollectionRef, msgObj);
   };
@@ -124,7 +144,8 @@ function Status() {
                             e,
                             data.statusText,
                             data.userId,
-                            data.userAvt
+                            data.userAvt,
+                            auth.currentUser?.uid
                           )
                         }
                       >

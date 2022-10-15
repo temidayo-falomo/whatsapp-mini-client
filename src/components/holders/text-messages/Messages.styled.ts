@@ -16,7 +16,7 @@ export const StyledMessages = styled.div`
     justify-content: flex-start;
     align-items: flex-start;
     margin-top: 4rem;
-    padding-bottom: 4rem;
+    padding-bottom: 5rem;
   }
 
   .bubble-left {

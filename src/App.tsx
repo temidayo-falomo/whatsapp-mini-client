@@ -12,13 +12,13 @@ import Settings from "./pages/settings/Settings";
 import StatusUploads from "./pages/status-uploads/StatusUploads";
 
 function App() {
-  // Global States x Variables
+  //* Global States x Variables
   const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState();
 
+  //local variables
   let navigate = useNavigate();
-
   let id: any = auth.currentUser && auth.currentUser.uid;
 
   //
@@ -50,14 +50,14 @@ function App() {
   const [searchText, setSearchText] = useState("");
 
   const [colors, setColors] = useState([
-    "orange",
-    "red",
-    "yellow",
-    "green",
-    "blue",
-    "indigo",
-    "violet",
-    "pink",
+    "#fc4338",
+    "#669bfa",
+    "#23633c",
+    "#767c8c",
+    "#a8cec7",
+    "#1c2134",
+    "#f08389",
+    "#000",
   ]);
 
   const [fonts, setFonts] = useState([
@@ -70,8 +70,9 @@ function App() {
   const [newMsg1, setNewMsg1] = useState([]);
   const [newMsg2, setNewMsg2] = useState([]);
 
-  //End of Global States & Variables
+  const [number, setNumber] = useState("disp");
 
+  //Get Current User By Auth.Id
   useEffect(() => {
     const getUser = async () => {
       const userDoc = doc(db, "users", id);
@@ -85,6 +86,8 @@ function App() {
     }
   }, [auth.currentUser?.uid, users]);
 
+  //Protected Routes tt check local storage for if user is not logged in
+
   useEffect(() => {
     if (
       !localStorage.getItem("isAuth") ||
@@ -93,6 +96,8 @@ function App() {
       navigate("/login");
     }
   }, []);
+
+  //Loading Screen
 
   useEffect(() => {
     setTimeout(() => {
@@ -145,6 +150,8 @@ function App() {
         setDisplaySearch,
         searchText,
         setSearchText,
+        number,
+        setNumber,
       }}
     >
       <div className="App">

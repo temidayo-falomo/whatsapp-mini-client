@@ -3,14 +3,21 @@ import { MdEmojiEmotions } from "react-icons/md";
 import { StyledInputBar } from "./InputBar.styled";
 import { FaPaperclip } from "react-icons/fa";
 import { auth, db } from "../../firebase/firebase-config";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDoc,
+  serverTimestamp,
+  updateDoc,
+} from "firebase/firestore";
 import bcrypt from "bcryptjs";
 import { AppContext } from "../../helper/Context";
 import EmojiPicker from "emoji-picker-react";
 import { AiOutlineSend } from "react-icons/ai";
 
 function InputBar() {
-  const { messageText, setMessageText, friendId, friendImg } =
+  const { messageText, setMessageText, friendId, friendImg, setNumber } =
     useContext(AppContext);
 
   const [showEmojis, setShowEmojis] = useState(false);
@@ -19,9 +26,14 @@ function InputBar() {
 
   const messagesCollectionRef: any = collection(db, "messages");
 
-  const sendMessage = async (e: React.FormEvent<HTMLFormElement>) => {
+  const sendMessage = async (
+    e: React.FormEvent<HTMLFormElement>,
+    userId: any
+  ) => {
     e.preventDefault();
     setMessageText("");
+
+    const userDoc = doc(db, "users", userId);
 
     var time = new Date();
 
@@ -40,6 +52,22 @@ function InputBar() {
       sentTime: realTime,
       timestamp: serverTimestamp(),
     };
+
+    await getDoc(userDoc).then((doc: any) => {
+      
+      let nuggle = doc.data().friends;
+
+      const newState = nuggle.map((obj: any) =>
+        obj.friendId === friendId ? { ...obj, timestamp: time } : obj
+      );
+
+      const newFriend = {
+        friends: newState,
+      };
+
+      updateDoc(userDoc, newFriend);
+      setNumber(0);
+    });
 
     await addDoc(messagesCollectionRef, msgObj);
   };
@@ -69,7 +97,10 @@ function InputBar() {
         </div>
       )}
       <FaPaperclip className="pointer" />
-      <form onSubmit={(e: any) => sendMessage(e)} style={{ width: "90%" }}>
+      <form
+        onSubmit={(e: any) => sendMessage(e, auth.currentUser?.uid)}
+        style={{ width: "90%" }}
+      >
         <input
           type="text"
           placeholder="Type A Message"

@@ -10,7 +10,9 @@ import { GiCancel } from "react-icons/gi";
 
 function AddStatusRight(props: any) {
   const { colors, fonts } = useContext(AppContext);
-  const [currColor, setCurrColor] = useState(0);
+  const [currColor, setCurrColor] = useState(
+    Math.floor(Math.random() * colors.length - 1)
+  );
   const [statusText, setStatusText] = useState("");
   const [currentFont, setCurrentFont] = useState(0);
   const [clicked, setClicked] = useState(false);

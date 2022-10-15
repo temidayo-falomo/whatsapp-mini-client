@@ -1,28 +1,32 @@
 import { collection, onSnapshot, query, where } from "firebase/firestore";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BsCheckAll } from "react-icons/bs";
 import { auth, db } from "../../firebase/firebase-config";
 import { StyledMessageCard } from "./MessageCard.styled";
 
 function MessageCard(props: any) {
-  const [lastMsg1, setLastMsg1] = useState<any>();
-  const [lastMsg2, setLastMsg2] = useState<any>();
+  //Local States
+  const [lastMsg1, setLastMsg1] = useState<any>([]);
+  const [lastMsg2, setLastMsg2] = useState<any>([]);
 
+  //Logic to get date in text format.
   let time = new Date();
-
   let realTime = time.toLocaleString("en-US", {
     hour: "numeric",
     minute: "numeric",
     hour12: true,
   });
 
-  // collection ref
+  // Messages collection ref
   const colRef = collection(db, "messages");
 
   useEffect(() => {
-    // queries
+    // All Queries
     const q1 = query(colRef, where("senderId", "==", auth.currentUser?.uid));
     const q2 = query(colRef, where("receiverId", "==", auth.currentUser?.uid));
+
+    // Both Snapshots are basically making respective queries for q1 & q2
+    // Whilst also respectively updating respective states.
 
     onSnapshot(q1, (snapshot) => {
       let msgs: any = [];
@@ -60,13 +64,12 @@ function MessageCard(props: any) {
           .sort((a: any, b: any) => a.timestamp - b.timestamp)
       );
     });
-  }, []);
+  }, [props.timestamp]);
 
-  // !TODO: Need To Come Back And Sort Out All These Messy Code.
-  //* The Blood Of Jesus.
-
-  // t sortFn = (a, b) => a.m - <b className="time">
-  // aray.sort(sortFn)
+  // Variable to combine & sort the result of both seperate queries together.
+  const jointMsgsArr = [...lastMsg1, ...lastMsg2].sort(
+    (a: any, b: any) => a.timestamp - b.timestamp
+  );
 
   return (
     <StyledMessageCard>
@@ -79,49 +82,25 @@ function MessageCard(props: any) {
           <h4 className="cap">{props.friendName}</h4>
           <p
             className={
-              lastMsg1 &&
               auth.currentUser?.uid !==
-                [...lastMsg1, ...lastMsg2].sort(
-                  (a: any, b: any) => a.timestamp - b.timestamp
-                )[[...lastMsg1, ...lastMsg2].length - 1]?.senderId &&
-              realTime ===
-                [...lastMsg1, ...lastMsg2].sort(
-                  (a: any, b: any) => a.timestamp - b.timestamp
-                )[[...lastMsg1, ...lastMsg2].length - 1]?.sentTime
+                jointMsgsArr[jointMsgsArr.length - 1]?.senderId &&
+              realTime === jointMsgsArr[jointMsgsArr.length - 1]?.sentTime
                 ? "new-txt"
                 : ""
             }
           >
-            {/* You:  */}
-            {lastMsg1 &&
-              lastMsg2 &&
-              [...lastMsg1, ...lastMsg2].sort(
-                (a: any, b: any) => a.timestamp - b.timestamp
-              )[[...lastMsg1, ...lastMsg2].length - 1]?.message}
+            {jointMsgsArr[jointMsgsArr.length - 1]?.message}
           </p>
         </div>
       </div>
 
       <div className="col center gap-5">
-        <span>
-          {" "}
-          {lastMsg1 &&
-            lastMsg2 &&
-            [...lastMsg1, ...lastMsg2].sort(
-              (a: any, b: any) => a.timestamp - b.timestamp
-            )[[...lastMsg1, ...lastMsg2].length - 1]?.sentTime}
-        </span>
+        <span>{jointMsgsArr[jointMsgsArr.length - 1]?.sentTime}</span>
         <BsCheckAll
           className={
-            lastMsg1 &&
             auth.currentUser?.uid !==
-              [...lastMsg1, ...lastMsg2].sort(
-                (a: any, b: any) => a.timestamp - b.timestamp
-              )[[...lastMsg1, ...lastMsg2].length - 1]?.senderId &&
-            realTime ===
-              [...lastMsg1, ...lastMsg2].sort(
-                (a: any, b: any) => a.timestamp - b.timestamp
-              )[[...lastMsg1, ...lastMsg2].length - 1]?.sentTime
+              jointMsgsArr[jointMsgsArr.length - 1]?.senderId &&
+            realTime === jointMsgsArr[jointMsgsArr.length - 1]?.sentTime
               ? "new-txt"
               : "check"
           }
