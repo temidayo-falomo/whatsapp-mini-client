@@ -27,6 +27,7 @@ export const StyledMessages = styled.div`
     margin-right: auto;
     display: flex;
     align-items: center;
+    cursor: pointer;
   }
 
   .bubble-right {
@@ -37,6 +38,7 @@ export const StyledMessages = styled.div`
     margin-left: auto;
     display: flex;
     align-items: center;
+    cursor: pointer;
 
     .del {
       display: none;

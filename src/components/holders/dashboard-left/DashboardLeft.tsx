@@ -19,6 +19,7 @@ import { Link } from "react-router-dom";
 import DetailedUsers from "../detailed-users/DetailedUsers";
 import UserCircle from "../../user-circle/UserCircle";
 import { FcRightDown2 } from "react-icons/fc";
+import { CgCornerRightDown } from "react-icons/cg";
 
 function DashboardLeft() {
   const {
@@ -235,7 +236,9 @@ function DashboardLeft() {
           style={{ fontSize: "1.5rem", paddingLeft: "1rem" }}
         >
           Quick Add
-          <FcRightDown2 />
+          <CgCornerRightDown
+            style={{ color: "royalblue", fontWeight: "600" }}
+          />
         </h3>
         <div className="users row gap-1">
           {users?.map((data: any) => {
