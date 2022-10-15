@@ -6,11 +6,8 @@ function DashboardRightErr() {
     <StyledDashboardRightErr>
       <div className="rect col center">
         <img src="./assets/phone-ico.svg" alt="" />
-        <h2>Keep your phone connected</h2>
-        <p>
-          Whatsapp connects to your phone to sync messages. To reduce data
-          usage. connect your phone to Wi-Fi.
-        </p>
+        <h2>Keep your Google connected.</h2>
+        <p>Whatsapp-Mini connects to your Account to sync messages.</p>
       </div>
     </StyledDashboardRightErr>
   );

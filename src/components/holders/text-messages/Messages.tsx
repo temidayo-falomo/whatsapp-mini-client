@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useContext } from "react";
 import { auth, db } from "../../../firebase/firebase-config";
 import { StyledMessages } from "./Messages.styled";
 import { AppContext } from "../../../helper/Context";
@@ -17,13 +17,11 @@ function Messages() {
     searchText,
   } = useContext(AppContext);
 
+  //Delete Single or Multiple Messages
+
   const deleteMessage = async (messageId: any) => {
     const messageDc = doc(db, "messages", messageId);
     await deleteDoc(messageDc);
-  };
-
-  const handleMouseOut = () => {
-    setDisplayDelete(false);
   };
 
   return (
@@ -53,19 +51,33 @@ function Messages() {
               <div
                 key={data.id}
                 className={
-                  data.senderId === auth.currentUser?.uid ? "right" : "left"
+                  data.senderId === auth.currentUser?.uid
+                    ? "right row"
+                    : "left row"
                 }
               >
                 <div
-                  className={
-                    data.senderId === auth.currentUser?.uid
-                      ? "bubble-right"
-                      : "bubble-left"
-                  }
                   onClick={() => setDisplayDelete(!displayDelete)}
+                  className="row center gap-5"
                 >
-                  {data.message}
-                  <span>{data.sentTime}</span>
+                  <div
+                    className={
+                      data.senderId === auth.currentUser?.uid ? "none" : "circ"
+                    }
+                    style={{ backgroundImage: `url(${data.senderImg})` }}
+                  ></div>
+                  <div
+                    className={
+                      data.senderId === auth.currentUser?.uid
+                        ? "bubble-right center row"
+                        : "bubble-left center row"
+                    }
+                  >
+                    <div>
+                      {data.message}
+                      <span>{data.sentTime}</span>
+                    </div>
+                  </div>
                 </div>
 
                 {displayDelete && auth.currentUser?.uid === data.senderId && (

@@ -18,6 +18,7 @@ import { auth, db } from "../../../firebase/firebase-config";
 import { Link } from "react-router-dom";
 import DetailedUsers from "../detailed-users/DetailedUsers";
 import UserCircle from "../../user-circle/UserCircle";
+import { FcRightDown2 } from "react-icons/fc";
 
 function DashboardLeft() {
   const {
@@ -45,6 +46,8 @@ function DashboardLeft() {
   // users collection
   const usersCollectionRef = collection(db, "users");
 
+  //Get All User Circles
+
   const getAllUsers = async () => {
     const q = query(usersCollectionRef);
     onSnapshot(q, (snapshot) => {
@@ -55,6 +58,9 @@ function DashboardLeft() {
       setUsers(usrs);
     });
   };
+
+  // Add Friend by pushing friend details as an object into the users' array Field.
+  // Pushing does'nt work in Firestore, so i had to get all previous array content and mutate it in FE.
 
   const addFriendToUser = async (
     userId: any,
@@ -81,7 +87,7 @@ function DashboardLeft() {
         ],
       };
 
-      //Check If Friend to be added is current user.
+      //*Check If Friend to be added is current user.
 
       if (friendId !== auth.currentUser?.uid) {
         updateDoc(userDoc, newFriend);
@@ -90,6 +96,8 @@ function DashboardLeft() {
       }
     });
   };
+
+  // Remove Friend( Similar to Above)
 
   const removeFriend = async (userId: any, friendId: any) => {
     const userDoc = doc(db, "users", userId);
@@ -107,6 +115,9 @@ function DashboardLeft() {
     });
   };
 
+  // Function To Handle What Card is Active/Get the current...
+  //..user Messages by updating the correct Filtered Global States.
+
   const handleCard = (
     paramId: any,
     paramImg: any,
@@ -120,9 +131,13 @@ function DashboardLeft() {
     setDisplayDelete(false);
   };
 
+  //Run Some afformentioned Functions On Render
+
   useEffect(() => {
     getAllUsers();
 
+    //* Didnt have the time to create a separate function for the Logic
+    //* This is to get all current Friends Of Current User
     const id: any = auth.currentUser?.uid;
     const docRef = doc(db, "users", id);
     onSnapshot(docRef, (doc) => {
@@ -130,16 +145,18 @@ function DashboardLeft() {
     });
   }, []);
 
-  // messages collection
-  const colRef = collection(db, "messages");
-
   useEffect(() => {
-    // queries
-    const q = query(colRef, where("senderId", "==", auth.currentUser?.uid));
+    // messages collection
+    const colRef = collection(db, "messages");
 
+    // All Queries
+    const q = query(colRef, where("senderId", "==", auth.currentUser?.uid));
     const q2 = query(colRef, where("receiverId", "==", auth.currentUser?.uid));
 
     // realtime collection's data
+    // Both Snapshots are basically making respective queries for q1 & q2
+    // Whilst also respectively updating respective states.
+
     onSnapshot(q, (snapshot) => {
       const posts1 = snapshot.docs.map((doc) => ({
         id: doc.id,
@@ -160,12 +177,15 @@ function DashboardLeft() {
   }, []);
 
   useEffect(() => {
+    //* Combining & Sorting All Messages On Render
     setAllMessages(
       [...newMsg1, ...newMsg2].sort(
         (a: any, b: any) => a.timestamp - b.timestamp
       )
     );
   }, []);
+
+  //End Of Seperate Useeffects(I prefer writing multiple useEffects)
 
   return (
     <StyledDashboardLeft>
@@ -209,17 +229,26 @@ function DashboardLeft() {
         )}
       </div>
 
-      <div className="users row gap-1">
-        {users?.map((data: any) => {
-          return (
-            <UserCircle
-              {...data}
-              key={data.id}
-              addFriendToUser={addFriendToUser}
-              removeFriend={removeFriend}
-            />
-          );
-        })}
+      <div className="col gap-1">
+        <h3
+          className="row center"
+          style={{ fontSize: "1.5rem", paddingLeft: "1rem" }}
+        >
+          Quick Add
+          <FcRightDown2 />
+        </h3>
+        <div className="users row gap-1">
+          {users?.map((data: any) => {
+            return (
+              <UserCircle
+                {...data}
+                key={data.id}
+                addFriendToUser={addFriendToUser}
+                removeFriend={removeFriend}
+              />
+            );
+          })}
+        </div>
       </div>
 
       <div className="search-row">

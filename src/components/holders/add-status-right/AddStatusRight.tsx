@@ -10,6 +10,9 @@ import { GiCancel } from "react-icons/gi";
 
 function AddStatusRight(props: any) {
   const { colors, fonts } = useContext(AppContext);
+
+  //Local States & Variables
+
   const [currColor, setCurrColor] = useState(
     Math.floor(Math.random() * colors.length - 1)
   );
@@ -21,6 +24,8 @@ function AddStatusRight(props: any) {
     setCurrColor(currColor + 1);
   };
 
+  //IF check to set Current Color back to 0
+
   if (currColor > colors.length - 1) {
     setCurrColor(0);
   }
@@ -30,6 +35,8 @@ function AddStatusRight(props: any) {
   }
 
   const statusesCollectionRef = collection(db, "status-uploads");
+
+  //Upload Status
 
   const sendStatus = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

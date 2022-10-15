@@ -10,6 +10,8 @@ function Login() {
   const { setIsAuth } = useContext(AppContext);
   const navigate = useNavigate();
 
+  //Button to sign up w Google & Redirect to Dashboard
+
   const signInWithGoogle = async () => {
     signInWithPopup(auth, provider)
       .then((res) => {

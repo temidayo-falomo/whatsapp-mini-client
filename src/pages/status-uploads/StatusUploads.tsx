@@ -8,6 +8,7 @@ import Status from "../../components/holders/status/Status";
 function StatusUploads() {
   const { displayStatus } = useContext(AppContext);
   const [showAdd, setShowAdd] = useState(true);
+  
   return (
     <StyledStatusUploads>
       <AllStatuses setShowAdd={setShowAdd} />

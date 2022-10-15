@@ -12,7 +12,7 @@ export const StyledDashboardRightErr = styled.div`
 
   p {
     width: 70%;
-    line-height: 30px;
+    line-height: 27px;
   }
 
   img {

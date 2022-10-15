@@ -21,12 +21,16 @@ function Status() {
   const { statusByUser, setDisplayStatus, filteredStatuses, setNumber } =
     useContext(AppContext);
 
+  //Local States
+  
   const [active, setActive] = useState<number>();
   const [replyText, setReplyText] = useState("");
 
   const handleIndex = (param: number) => {
     setActive(param);
   };
+
+  // Handle Styling Of Slideshow Indicators
 
   const indicators = (index: any) => (
     <div className="indicators-w">
@@ -38,6 +42,8 @@ function Status() {
   );
 
   const messagesCollectionRef: any = collection(db, "messages");
+
+  // Send A Reply To Other User's DM.
 
   const sendReply = async (
     e: React.FormEvent<HTMLFormElement>,
@@ -86,6 +92,8 @@ function Status() {
 
     await addDoc(messagesCollectionRef, msgObj);
   };
+
+  //Delete Status(Only Displayed for Authorized User)
 
   const handleDeleteStatus = async (statusId: string) => {
     const statusDoc = doc(db, "status-uploads", statusId);

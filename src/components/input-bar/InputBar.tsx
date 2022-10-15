@@ -20,6 +20,8 @@ function InputBar() {
   const { messageText, setMessageText, friendId, friendImg, setNumber } =
     useContext(AppContext);
 
+  //Local States & Variable
+
   const [showEmojis, setShowEmojis] = useState(false);
   const [clicked, setClicked] = useState(false);
   const [typing, setTyping] = useState(false);
@@ -54,7 +56,6 @@ function InputBar() {
     };
 
     await getDoc(userDoc).then((doc: any) => {
-      
       let nuggle = doc.data().friends;
 
       const newState = nuggle.map((obj: any) =>

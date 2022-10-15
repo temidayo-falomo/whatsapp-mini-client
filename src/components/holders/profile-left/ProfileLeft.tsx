@@ -14,9 +14,9 @@ function ProfileLeft() {
   const [username, setUserName] = useState(user?.username);
   const [userAbout, setUserAbout] = useState(user?.userAbout);
 
+  //Update Current User's Information in Firestore
+
   const handleUpdateUserInfo = async (e: React.FormEvent<HTMLFormElement>) => {
-    // setUserName("")
-    // setUserAbout("")
     setShowEdit(!showEdit);
     e.preventDefault();
     let id: any = auth.currentUser?.uid;

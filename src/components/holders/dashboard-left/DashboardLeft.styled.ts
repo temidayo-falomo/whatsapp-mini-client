@@ -97,7 +97,7 @@ export const StyledDashboardLeft = styled.div`
   }
 
   .search-row {
-    margin-top: 2rem;
+    margin-top: 0.5rem;
     position: relative;
     padding: 0 20px;
 

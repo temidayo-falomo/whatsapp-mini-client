@@ -1,11 +1,9 @@
 import { collection, onSnapshot, orderBy, query } from "firebase/firestore";
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { auth, db } from "../../../firebase/firebase-config";
+import { db } from "../../../firebase/firebase-config";
 import { AppContext } from "../../../helper/Context";
 import { StyledAllStatuses } from "./AllStatuses.styled";
-import { GrLinkPrevious } from "react-icons/gr";
-import { FaPen } from "react-icons/fa";
 import { HiPencil } from "react-icons/hi";
 import { MdArrowBack } from "react-icons/md";
 
@@ -19,11 +17,15 @@ function AllStatuses(props: any) {
   } = useContext(AppContext);
   const [number, setNumber] = useState<any>("disp");
 
+  //Function to set card to active & determine what user's status is being shown.
+
   const handleStatusCard = (param: any, indexParam: number) => {
     setDisplayStatus(true);
     setFilteredStatuses(param);
     setNumber(indexParam);
   };
+
+  //Get All Users` Status
 
   useEffect(() => {
     const postsCollectionRef = collection(db, "status-uploads");

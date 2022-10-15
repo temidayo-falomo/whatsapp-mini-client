@@ -129,7 +129,8 @@ export const StyledStatus = styled.div`
     text-align: center;
 
     .status-text {
-      font-size: 4rem;
+      font-size: 3.5rem;
+      max-width: 95%;
     }
   }
 
@@ -138,5 +139,9 @@ export const StyledStatus = styled.div`
     height: 100vh;
     width: 100%;
     z-index: 999;
+
+    .status-text {
+      font-size: 2.3rem !important;
+    }
   }
 `;

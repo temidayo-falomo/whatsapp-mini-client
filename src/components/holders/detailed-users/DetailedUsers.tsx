@@ -7,6 +7,8 @@ import { StyledDetailedUsers } from "./DetailedUsers.styled";
 function DetailedUsers(props: any) {
   const { user, users } = useContext(AppContext);
 
+  //This Component Displays A Modal Containing All Users.
+
   return (
     <StyledDetailedUsers>
       <div className="det-top row btw center">
@@ -19,53 +21,48 @@ function DetailedUsers(props: any) {
       </div>
 
       <div className="det-col col">
-        {users
-          // ?.slice(0)
-          // .reverse()
-          ?.map((data: any) => {
-            return (
-              <div key={data.id} className="det-card row btw">
-                <div className="row center gap-1">
-                  <div
-                    className="det-avt"
-                    style={{ backgroundImage: `url(${data.userAvatar})` }}
-                  ></div>
-                  <div className="col gap-5">
-                    <h3 className="cap">{data.username}</h3>
-                    <span>
-                      {data.userAbout ? data.userAbout : "Available."}
-                    </span>
-                  </div>
+        {users?.map((data: any) => {
+          return (
+            <div key={data.id} className="det-card row btw">
+              <div className="row center gap-1">
+                <div
+                  className="det-avt"
+                  style={{ backgroundImage: `url(${data.userAvatar})` }}
+                ></div>
+                <div className="col gap-5">
+                  <h3 className="cap">{data.username}</h3>
+                  <span>{data.userAbout ? data.userAbout : "Available."}</span>
                 </div>
-                {auth.currentUser?.uid !== data.id && (
-                  <div>
-                    {!user?.friends.some((e: any) => data.id === e.friendId) ? (
-                      <button
-                        onClick={() =>
-                          props.addFriendToUser(
-                            auth.currentUser?.uid,
-                            data.userAvatar,
-                            data.id,
-                            data.username
-                          )
-                        }
-                      >
-                        Add Friend
-                      </button>
-                    ) : (
-                      <button
-                        onClick={() =>
-                          props.removeFriend(auth.currentUser?.uid, data.id)
-                        }
-                      >
-                        Remove
-                      </button>
-                    )}
-                  </div>
-                )}
               </div>
-            );
-          })}
+              {auth.currentUser?.uid !== data.id && (
+                <div>
+                  {!user?.friends.some((e: any) => data.id === e.friendId) ? (
+                    <button
+                      onClick={() =>
+                        props.addFriendToUser(
+                          auth.currentUser?.uid,
+                          data.userAvatar,
+                          data.id,
+                          data.username
+                        )
+                      }
+                    >
+                      Add Friend
+                    </button>
+                  ) : (
+                    <button
+                      onClick={() =>
+                        props.removeFriend(auth.currentUser?.uid, data.id)
+                      }
+                    >
+                      Remove
+                    </button>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
       </div>
     </StyledDetailedUsers>
   );
