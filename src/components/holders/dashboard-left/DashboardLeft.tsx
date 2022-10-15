@@ -18,7 +18,6 @@ import { auth, db } from "../../../firebase/firebase-config";
 import { Link } from "react-router-dom";
 import DetailedUsers from "../detailed-users/DetailedUsers";
 import UserCircle from "../../user-circle/UserCircle";
-import { FcRightDown2 } from "react-icons/fc";
 import { CgCornerRightDown } from "react-icons/cg";
 
 function DashboardLeft() {
@@ -232,7 +231,7 @@ function DashboardLeft() {
 
       <div className="col gap-1">
         <h3
-          className="row center"
+          className="row center gap-5"
           style={{ fontSize: "1.5rem", paddingLeft: "1rem" }}
         >
           Quick Add
@@ -309,7 +308,7 @@ function DashboardLeft() {
         className="chat-circle grid-center pointer"
         onClick={() => setDetailedUsersShow(!detailedUsersShow)}
       >
-        <BsChatRightTextFill className="pointer" />
+        <BsChatRightTextFill />
       </div>
     </StyledDashboardLeft>
   );

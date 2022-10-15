@@ -43,7 +43,7 @@ function App() {
   const [displayDelete, setDisplayDelete] = useState(false);
   const [displayStatus, setDisplayStatus] = useState(false);
 
-  //
+  //isAuth
 
   const [filteredStatuses, setFilteredStatuses] = useState("");
   const [displaySearch, setDisplaySearch] = useState(false);
@@ -90,8 +90,8 @@ function App() {
 
   useEffect(() => {
     if (
-      !localStorage.getItem("isAuth") ||
-      localStorage.getItem("isAuth") === "false"
+      !localStorage.getItem("whatsappIsAuth") ||
+      localStorage.getItem("whatsappIsAuth") === "false"
     ) {
       navigate("/login");
     }
@@ -108,6 +108,8 @@ function App() {
   if (loading) {
     return <Loading />;
   }
+
+  
 
   return (
     <AppContext.Provider

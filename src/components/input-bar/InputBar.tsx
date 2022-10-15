@@ -15,6 +15,8 @@ import bcrypt from "bcryptjs";
 import { AppContext } from "../../helper/Context";
 import EmojiPicker from "emoji-picker-react";
 import { AiOutlineSend } from "react-icons/ai";
+import useSound from "use-sound";
+import Sound from "./bubble-sound-43207.mp3";
 
 function InputBar() {
   const { messageText, setMessageText, friendId, friendImg, setNumber } =
@@ -79,6 +81,8 @@ function InputBar() {
     }
   }, [typing, messageText]);
 
+  const [play] = useSound(Sound, { playbackRate: 1 });
+
   return (
     <StyledInputBar>
       <MdEmojiEmotions
@@ -99,7 +103,10 @@ function InputBar() {
       )}
       <FaPaperclip className="pointer" />
       <form
-        onSubmit={(e: any) => sendMessage(e, auth.currentUser?.uid)}
+        onSubmit={(e: any) => {
+          sendMessage(e, auth.currentUser?.uid);
+          play();
+        }}
         style={{ width: "90%" }}
       >
         <input

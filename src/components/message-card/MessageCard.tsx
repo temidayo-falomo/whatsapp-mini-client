@@ -71,6 +71,7 @@ function MessageCard(props: any) {
     (a: any, b: any) => a.timestamp - b.timestamp
   );
 
+
   return (
     <StyledMessageCard>
       <div className="row center gap-1">

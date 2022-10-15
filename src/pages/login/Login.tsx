@@ -1,6 +1,6 @@
 import { signInWithPopup } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { auth, db, provider } from "../../firebase/firebase-config";
 import { AppContext } from "../../helper/Context";
@@ -10,12 +10,21 @@ function Login() {
   const { setIsAuth } = useContext(AppContext);
   const navigate = useNavigate();
 
+  // useEffect(() => {
+  //   if (
+  //     localStorage.getItem("whatsappIsAuth") ||
+  //     localStorage.getItem("whatsappIsAuth") === "false"
+  //   ) {
+  //     navigate("/");
+  //   }
+  // }, []);
+
   //Button to sign up w Google & Redirect to Dashboard
 
   const signInWithGoogle = async () => {
     signInWithPopup(auth, provider)
       .then((res) => {
-        localStorage.setItem("isAuth", "true");
+        localStorage.setItem("whatsappIsAuth", "true");
         setIsAuth(true);
 
         setDoc(doc(db, "users", res.user.uid), {
