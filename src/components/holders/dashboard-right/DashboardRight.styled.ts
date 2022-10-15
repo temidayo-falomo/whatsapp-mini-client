@@ -2,8 +2,10 @@ import styled from "styled-components";
 import img from "./bg.svg";
 
 export const StyledDashboardRight = styled.div`
-  background-image: url(${img});
-  background-size: cover;
+  /* background-image: url(${img}); */
+  background-image: url("https://i.pinimg.com/originals/85/ec/df/85ecdf1c3611ecc9b7fa85282d9526e0.jpg");
+  background-size: contain;
+  background-repeat: repeat;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
