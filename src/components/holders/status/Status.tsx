@@ -95,7 +95,12 @@ function Status() {
   return (
     <StyledStatus>
       <div className="carousel">
-        <Slide indicators={indicators} scale={1.4} infinite={false}>
+        <Slide
+          indicators={indicators}
+          scale={1.4}
+          infinite={false}
+          transitionDuration={500}
+        >
           {statusByUser
             ?.filter((val: any) => {
               return val.userId === filteredStatuses;
