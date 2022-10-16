@@ -15,8 +15,6 @@ export const StyledStatus = styled.div`
   }
 
   .indicators-w {
-    /* position: absolute; */
-
     .indicator {
       margin: 0 1rem;
       width: 35px;

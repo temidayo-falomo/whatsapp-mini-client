@@ -176,14 +176,14 @@ export const StyledDashboardLeft = styled.div`
   .chat-circle {
     background-color: green;
     color: #fff;
-    height: 80px;
-    width: 80px;
-    font-size: 2rem;
+    height: 70px;
+    width: 70px;
+    font-size: 1.8rem;
     border-radius: 50%;
-    position: sticky;
+    position: fixed;
     right: 0;
     left: 80%;
-    bottom: 5%;
+    bottom: 8%;
     z-index: 999999999;
     margin-left: auto;
     margin-right: 1rem;
@@ -192,6 +192,7 @@ export const StyledDashboardLeft = styled.div`
   @media (max-width: 1000px) {
     height: 100vh;
     border: none;
+    
 
     .detailed-users.active {
       position: fixed;
