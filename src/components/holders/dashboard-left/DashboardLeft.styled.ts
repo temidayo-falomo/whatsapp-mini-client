@@ -181,8 +181,7 @@ export const StyledDashboardLeft = styled.div`
     font-size: 1.8rem;
     border-radius: 50%;
     position: fixed;
-    right: 0;
-    left: 80%;
+    left: 450px;
     bottom: 8%;
     z-index: 999999999;
     margin-left: auto;
@@ -192,7 +191,11 @@ export const StyledDashboardLeft = styled.div`
   @media (max-width: 1000px) {
     height: 100vh;
     border: none;
-    
+
+    .chat-circle {
+      left: 0;
+      right: 2rem;
+    }
 
     .detailed-users.active {
       position: fixed;
