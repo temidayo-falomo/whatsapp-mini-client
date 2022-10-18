@@ -14,6 +14,7 @@ function AllStatuses(props: any) {
     setDisplayStatus,
     setStatusByUser,
     setFilteredStatuses,
+    theme,
   } = useContext(AppContext);
   const [number, setNumber] = useState<any>("disp");
 
@@ -44,7 +45,7 @@ function AllStatuses(props: any) {
   }, []);
 
   return (
-    <StyledAllStatuses>
+    <StyledAllStatuses theme={theme}>
       <div className="top-part row center gap-1">
         <Link
           to="/"

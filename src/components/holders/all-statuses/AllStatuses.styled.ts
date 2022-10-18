@@ -1,7 +1,9 @@
 import styled from "styled-components";
 
 export const StyledAllStatuses = styled.div`
-  background-color: #000;
+  background-color: ${(props: any) =>
+    props.theme === "light" ? "#fff" : "#000"};
+  color: ${(props: any) => (props.theme === "light" ? "#000" : "#fff")};
   border-right: 1px rgb(43, 42, 42) solid;
   position: relative;
   height: 100vh;
@@ -9,15 +11,15 @@ export const StyledAllStatuses = styled.div`
   .top-part {
     margin: 1rem;
     margin-top: 1.5rem;
-    color: #fff !important;
+    color: ${(props: any) => (props.theme === "light" ? "#000" : "#fff")};
 
     a {
       font-size: 2rem;
-      color: #fff !important;
+      color: ${(props: any) => (props.theme === "light" ? "#000" : "#fff")};
     }
 
     .prev {
-      color: #fff !important;
+      color: ${(props: any) => (props.theme === "light" ? "#000" : "#fff")};
       font-weight: 600;
     }
   }
