@@ -8,6 +8,7 @@ export const StyledDashboardRightErr = styled.div`
   background-color: ${(props: any) =>
     props.theme === "light" ? "#fff" : "#000"};
   color: ${(props: any) => (props.theme === "light" ? "#000" : "#fff")};
+  transition: 0.5s ease;
 
   .rect {
     gap: 1rem;

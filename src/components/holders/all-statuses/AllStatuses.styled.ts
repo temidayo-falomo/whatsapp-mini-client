@@ -4,10 +4,11 @@ export const StyledAllStatuses = styled.div`
   background-color: ${(props: any) =>
     props.theme === "light" ? "#fff" : "#000"};
   color: ${(props: any) => (props.theme === "light" ? "#000" : "#fff")};
-  
+
   border-right: 1px rgb(43, 42, 42) solid;
   position: relative;
   height: 100vh;
+  padding-bottom: 1rem;
 
   .top-part {
     margin: 1rem;
