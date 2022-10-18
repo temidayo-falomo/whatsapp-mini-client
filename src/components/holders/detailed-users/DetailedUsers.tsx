@@ -5,12 +5,12 @@ import { AppContext } from "../../../helper/Context";
 import { StyledDetailedUsers } from "./DetailedUsers.styled";
 
 function DetailedUsers(props: any) {
-  const { user, users } = useContext(AppContext);
+  const { user, users, theme } = useContext(AppContext);
 
   //This Component Displays A Modal Containing All Users.
 
   return (
-    <StyledDetailedUsers>
+    <StyledDetailedUsers theme={theme}>
       <div className="det-top row btw center">
         <h4>Add Users</h4>
 

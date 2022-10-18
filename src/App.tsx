@@ -13,9 +13,11 @@ import StatusUploads from "./pages/status-uploads/StatusUploads";
 
 function App() {
   //* Global States x Variables
+
   const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState();
+  const [user, setUser] = useState<any>();
+  const [theme, setTheme] = useState<any>("dark");
 
   //local variables
   let navigate = useNavigate();
@@ -109,8 +111,6 @@ function App() {
     return <Loading />;
   }
 
-  
-
   return (
     <AppContext.Provider
       value={{
@@ -154,6 +154,8 @@ function App() {
         setSearchText,
         number,
         setNumber,
+        theme,
+        setTheme,
       }}
     >
       <div className="App">

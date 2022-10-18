@@ -5,6 +5,9 @@ export const StyledDashboardRightErr = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
+  background-color: ${(props: any) =>
+    props.theme === "light" ? "#fff" : "#000"};
+  color: ${(props: any) => (props.theme === "light" ? "#000" : "#fff")};
 
   .rect {
     gap: 1rem;

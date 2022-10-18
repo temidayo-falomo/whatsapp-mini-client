@@ -35,6 +35,7 @@ function DashboardLeft() {
     setNewMsg2,
     number,
     setNumber,
+    theme,
   } = useContext(AppContext);
 
   const [friendsList, setFriendsList] = useState<any>();
@@ -188,7 +189,7 @@ function DashboardLeft() {
   //End Of Seperate Useeffects(I prefer writing multiple useEffects)
 
   return (
-    <StyledDashboardLeft>
+    <StyledDashboardLeft theme={theme}>
       <div
         className={
           !detailedUsersShow ? "detailed-users" : "detailed-users active"

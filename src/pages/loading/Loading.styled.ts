@@ -35,7 +35,7 @@ export const StyledLoading = styled.div`
     display: inline-block;
     position: relative;
     width: 80px;
-    height: 55px;
+    height: 60px;
   }
   .lds-ellipsis div {
     position: absolute;

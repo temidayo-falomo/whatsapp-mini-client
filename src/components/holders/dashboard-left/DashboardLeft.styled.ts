@@ -1,10 +1,14 @@
 import styled from "styled-components";
 
 export const StyledDashboardLeft = styled.div`
-  background-color: #000;
-  color: #fff;
+  background-color: ${(props: any) =>
+    props.theme === "light" ? "#fff" : "#000"};
+  color: ${(props: any) => (props.theme === "light" ? "#000" : "#fff")};
   position: relative;
-  border-right: 1px rgb(43, 42, 42) solid;
+  border-right: ${(props: any) =>
+    props.theme === "light"
+      ? "1px gainsboro solid"
+      : "1px rgb(43, 42, 42) solid"};
   height: 100vh;
   overflow: auto;
 
@@ -21,7 +25,9 @@ export const StyledDashboardLeft = styled.div`
   }
 
   .detailed-users {
-    background: rgba(255, 255, 255, 0.2);
+    background-color: ${(props: any) =>
+      props.theme === "light" ? "#fff" : "#000"};
+    color: ${(props: any) => (props.theme === "light" ? "#000" : "#fff")};
     width: 100%;
     position: absolute;
     z-index: 99999;
@@ -29,7 +35,6 @@ export const StyledDashboardLeft = styled.div`
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     transition: 0.5s;
-    background-color: #000;
     overflow: auto;
     height: 0;
 
@@ -45,6 +50,8 @@ export const StyledDashboardLeft = styled.div`
     display: block;
     height: 95vh;
     border: 2px #041a1d solid;
+    border-right: none;
+    border-left: none;
   }
 
   .top {
@@ -53,7 +60,7 @@ export const StyledDashboardLeft = styled.div`
     padding: 30px 20px;
 
     a {
-      color: #fff;
+      color: ${(props: any) => (props.theme === "light" ? "#000" : "#fff")};
     }
 
     .round {
@@ -79,6 +86,8 @@ export const StyledDashboardLeft = styled.div`
         padding: 10px 5px;
         cursor: pointer;
         border-radius: 5px;
+        color: ${(props: any) =>
+          props.theme === "light" ? "#fff" : "#fff"} !important;
       }
 
       a:hover {

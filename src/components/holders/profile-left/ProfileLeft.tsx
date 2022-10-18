@@ -72,8 +72,8 @@ function ProfileLeft() {
             </div>
           )}
           <p>
-            This is not your username or pin. This name will be visibile to your
-            WhatsApp contacts.
+            This is not your username or pin. This name will be visible to your
+            WhatsApp-Mini contacts.
           </p>
         </div>
       </div>
