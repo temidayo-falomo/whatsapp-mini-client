@@ -8,7 +8,7 @@ import { AppContext } from "../../../helper/Context";
 import { doc, updateDoc } from "firebase/firestore";
 
 function ProfileLeft() {
-  const { user } = useContext(AppContext);
+  const { user, theme } = useContext(AppContext);
   const [showEdit, setShowEdit] = useState(false);
 
   const [username, setUserName] = useState(user?.username);
@@ -28,7 +28,10 @@ function ProfileLeft() {
   };
 
   return (
-    <StyledProfileLeft onSubmit={(e: any) => handleUpdateUserInfo(e)}>
+    <StyledProfileLeft
+      onSubmit={(e: any) => handleUpdateUserInfo(e)}
+      theme={theme}
+    >
       <div className="top row gap-1 center">
         <Link
           to="/"

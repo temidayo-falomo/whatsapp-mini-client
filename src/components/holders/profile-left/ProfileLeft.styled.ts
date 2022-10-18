@@ -53,4 +53,16 @@ export const StyledProfileLeft = styled.form`
       width: 85%;
     }
   }
+
+  @media (max-width: 1000px) {
+    background-color: ${(props: any) =>
+      props.theme === "light" ? "#fff" : "#000"};
+    color: ${(props: any) => (props.theme === "light" ? "#000" : "#fff")};
+
+    .top {
+      a {
+        color: ${(props: any) => (props.theme === "light" ? "#000" : "#fff")};
+      }
+    }
+  }
 `;

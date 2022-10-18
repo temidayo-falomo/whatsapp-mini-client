@@ -9,7 +9,6 @@ export const StyledSettingsLeft = styled.div`
 
     a {
       font-size: 2rem;
-      color: #fff;
     }
   }
 
@@ -39,5 +38,17 @@ export const StyledSettingsLeft = styled.div`
     border-bottom: 1px rgb(43, 42, 42) solid;
     padding: 20px;
     cursor: pointer;
+  }
+
+  @media (max-width: 1000px) {
+    background-color: ${(props: any) =>
+      props.theme === "light" ? "#fff" : "#000"};
+    color: ${(props: any) => (props.theme === "light" ? "#000" : "#fff")};
+
+    .top {
+      a {
+        color: ${(props: any) => (props.theme === "light" ? "#000" : "#fff")};
+      }
+    }
   }
 `;
