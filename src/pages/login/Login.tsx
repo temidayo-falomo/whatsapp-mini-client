@@ -1,6 +1,7 @@
 import { signInWithPopup } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import React, { useContext, useEffect } from "react";
+import { FcGoogle } from "react-icons/fc";
 import { useNavigate } from "react-router-dom";
 import { auth, db, provider } from "../../firebase/firebase-config";
 import { AppContext } from "../../helper/Context";
@@ -50,8 +51,11 @@ function Login() {
   return (
     <StyledLogin>
       <div className="box grid-center gap">
-        <h2>Login</h2>
-        <button onClick={signInWithGoogle}>Login With Google</button>
+        <h2>Welcome, You!</h2>
+        <button onClick={signInWithGoogle} className="row gap-5">
+          <FcGoogle style={{fontSize: "1.3rem"}}/>
+          Continue with Google
+        </button>
         <p>
           This is a one-time, password-less login, so you don't need a password.
         </p>

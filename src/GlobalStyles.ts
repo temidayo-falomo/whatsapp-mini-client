@@ -87,5 +87,13 @@ const GlobalStyle = createGlobalStyle`
   .cap {
     text-transform: capitalize;
   }
+
+  @media screen and (-webkit-min-device-pixel-ratio:0) { 
+  select,
+  textarea,
+  input {
+    font-size: 16px;
+  }
+}
 `;
 export default GlobalStyle;
