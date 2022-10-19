@@ -57,7 +57,7 @@ function AllStatuses(props: any) {
         >
           <MdArrowBack />
         </Link>
-        <h2>User Statuses</h2>
+        <h2>User Uploads</h2>
       </div>
 
       {allStatus
