@@ -14,6 +14,8 @@ import StatusUploads from "./pages/status-uploads/StatusUploads";
 function App() {
   //* Global States x Variables
 
+  // new
+  
   const [isAuth, setIsAuth] = useState(false);
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState<any>();
