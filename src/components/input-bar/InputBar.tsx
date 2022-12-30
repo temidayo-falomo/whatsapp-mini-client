@@ -28,7 +28,11 @@ function InputBar() {
   const [clicked, setClicked] = useState(false);
   const [typing, setTyping] = useState(false);
 
+  //Reference To Message Collection
+
   const messagesCollectionRef: any = collection(db, "messages");
+
+  //Send Message
 
   const sendMessage = async (
     e: React.FormEvent<HTMLFormElement>,

@@ -88,7 +88,7 @@ function App() {
     }
   }, [auth.currentUser?.uid, users]);
 
-  //Protected Routes tt check local storage for if user is not logged in
+  //Protected Routes to check local storage for if user is not logged in
 
   useEffect(() => {
     if (
