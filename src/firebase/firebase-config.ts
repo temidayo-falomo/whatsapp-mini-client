@@ -4,13 +4,13 @@ import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAlB6nGrGTK6kyB32iG8XilVMpR1-sjzbM",
-  authDomain: "whatsapp-clone-a81f3.firebaseapp.com",
-  projectId: "whatsapp-clone-a81f3",
-  storageBucket: "whatsapp-clone-a81f3.appspot.com",
-  messagingSenderId: "607824568927",
-  appId: "1:607824568927:web:de60e28220d0f078f931ea",
-  measurementId: "G-0N7MRP3NQ1",
+  apiKey: "API_KEY",
+  authDomain: "AUTH_DOMAIN",
+  projectId: "PROJECT_ID",
+  storageBucket: "STORAGE-BUCKET",
+  messagingSenderId: "MESSAGING-_SENDER_ID",
+  appId: "APP_ID",
+  measurementId: "MEASUREMENT_ID",
 };
 
 // Initialize Firebase
