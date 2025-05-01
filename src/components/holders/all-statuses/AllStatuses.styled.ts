@@ -9,6 +9,7 @@ export const StyledAllStatuses = styled.div`
   position: relative;
   height: 100vh;
   padding-bottom: 1rem;
+  overflow-y: auto;
 
   .top-part {
     margin: 1rem;
@@ -45,7 +46,7 @@ export const StyledAllStatuses = styled.div`
   .status-card {
     padding: 10px;
     gap: 0.5rem;
-    margin: 1rem 0;
+    margin: 0.2rem 0;
     cursor: pointer;
 
     svg {

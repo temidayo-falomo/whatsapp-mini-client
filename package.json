@@ -13,6 +13,7 @@
     "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "bcryptjs": "^2.4.3",
+    "date-fns": "^4.1.0",
     "emoji-picker-react": "^4.0.3",
     "firebase": "^9.10.0",
     "react": "^18.2.0",

@@ -6,7 +6,7 @@ import { AppContext } from "../../../helper/Context";
 import { StyledAllStatuses } from "./AllStatuses.styled";
 import { HiPencil } from "react-icons/hi";
 import { MdArrowBack } from "react-icons/md";
-
+import { formatDistanceToNow } from "date-fns";
 function AllStatuses(props: any) {
   const {
     allStatus,
@@ -43,6 +43,10 @@ function AllStatuses(props: any) {
       setStatusByUser(posts);
     });
   }, []);
+
+  useEffect(() => {
+    console.log(allStatus);
+  }, [allStatus]);
 
   return (
     <StyledAllStatuses theme={theme}>
@@ -86,7 +90,12 @@ function AllStatuses(props: any) {
               </svg>
               <div className="col gap-5">
                 <h4 style={{ textTransform: "capitalize" }}>{data.userName}</h4>
-                <span>Today at {data.realTime}</span>
+                <span>
+                  {formatDistanceToNow(
+                    new Date(data.timestamp.seconds * 1000),
+                    { addSuffix: true }
+                  )}
+                </span>
               </div>
             </div>
           );
