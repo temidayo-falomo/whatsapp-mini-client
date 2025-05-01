@@ -50,7 +50,7 @@ function Login() {
   return (
     <StyledLogin>
       <div className="box grid-center gap">
-        <h2>Login</h2>
+        {/* <h2>Login</h2> */}
         <button onClick={signInWithGoogle}>Login With Google</button>
         <p>
           This is a one-time, password-less login, so you don't need a password.

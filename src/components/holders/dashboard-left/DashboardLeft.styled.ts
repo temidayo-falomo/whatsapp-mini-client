@@ -113,10 +113,11 @@ export const StyledDashboardLeft = styled.div`
     input {
       width: 100%;
       height: 100%;
-      padding: 20px 10px;
-      border-radius: 20px;
+      padding: 20px 15px;
       border: 1px gray solid;
       background-color: ghostwhite;
+      border-radius: 25px;
+      font-size: 16px;
     }
 
     .search-dropdown {
@@ -135,6 +136,13 @@ export const StyledDashboardLeft = styled.div`
     margin: 1rem auto;
     width: 100%;
     overflow: auto;
+
+    &.wrap {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      padding: 0 1rem;
+      justify-content: center;
+    }
 
     ::-webkit-scrollbar {
       width: 0;

@@ -43,6 +43,7 @@ function DashboardLeft() {
   const [dropdown, setDropdown] = useState(false);
   const [detailedUsersShow, setDetailedUsersShow] = useState(false);
   const [searchFriendsText, setSearchFriendsText] = useState("");
+  const [isWrapLayout, setIsWrapLayout] = useState(false);
 
   // users collection
   const usersCollectionRef = collection(db, "users");
@@ -231,16 +232,32 @@ function DashboardLeft() {
       </div>
 
       <div className="col gap-1">
-        <h3
+        <div
           className="row center gap-5"
-          style={{ fontSize: "1.5rem", paddingLeft: "1rem" }}
+          style={{ paddingLeft: "1rem", justifyContent: "space-between" }}
         >
-          Quick Add
-          <CgCornerRightDown
-            style={{ color: "royalblue", fontWeight: "600" }}
-          />
-        </h3>
-        <div className="users row gap-1">
+          <h3 style={{ fontSize: "1.5rem" }}>
+            Quick Add
+            <CgCornerRightDown
+              style={{ color: "royalblue", fontWeight: "600" }}
+            />
+          </h3>
+          <button
+            onClick={() => setIsWrapLayout(!isWrapLayout)}
+            style={{
+              padding: "5px 10px",
+              borderRadius: "5px",
+              backgroundColor: isWrapLayout ? "royalblue" : "gainsboro",
+              color: isWrapLayout ? "white" : "black",
+              border: "none",
+              cursor: "pointer",
+              marginRight: "1rem",
+            }}
+          >
+            {isWrapLayout ? "Grid View" : "List View"}
+          </button>
+        </div>
+        <div className={`users row gap-1 ${isWrapLayout ? "wrap" : ""}`}>
           {users?.map((data: any) => {
             return (
               <UserCircle

@@ -26,7 +26,13 @@ export const StyledLogin = styled.div`
 
     button {
         padding: 20px;
-        border-radius: 10px;
+        //google button
+        background-color: #4285F4;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        font-weight: 600;
     }
   }
 `;

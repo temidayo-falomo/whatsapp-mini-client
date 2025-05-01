@@ -11,9 +11,8 @@ export const StyledInputBar = styled.div`
   position: absolute;
   bottom: 0;
   z-index: 9999;
-
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
   
   .emojis {
     position: absolute;
@@ -22,7 +21,7 @@ export const StyledInputBar = styled.div`
   }
 
   .pointer {
-    font-size: 2rem;
+    font-size: 1.2rem;
   }
 
   .pointer.actv {

@@ -101,7 +101,10 @@ function InputBar() {
           />
         </div>
       )}
-      <FaPaperclip className="pointer" />
+      <FaPaperclip className="pointer"
+      width={12}
+      height={12} 
+       />
       <form
         onSubmit={(e: any) => {
           sendMessage(e, auth.currentUser?.uid);
