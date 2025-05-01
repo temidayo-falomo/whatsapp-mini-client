@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState, useRef } from "react";
 import { StyledStatus } from "./Status.styled";
-import { Slide } from "react-slideshow-image";
-import "react-slideshow-image/dist/styles.css";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import { AppContext } from "../../../helper/Context";
 import { MdOutlineCancel } from "react-icons/md";
-import { useState } from "react";
 import {
   addDoc,
   collection,
@@ -16,30 +16,31 @@ import {
 } from "firebase/firestore";
 import { auth, db } from "../../../firebase/firebase-config";
 import { AiFillDelete } from "react-icons/ai";
+import { formatDistanceToNow } from "date-fns";
 
 function Status() {
   const { statusByUser, setDisplayStatus, filteredStatuses, setNumber } =
     useContext(AppContext);
+  const sliderRef = useRef<Slider>(null);
 
-  //Local States
-  
-  const [active, setActive] = useState<number>();
+  const [active, setActive] = useState<number>(0);
   const [replyText, setReplyText] = useState("");
 
   const handleIndex = (param: number) => {
     setActive(param);
+    sliderRef.current?.slickGoTo(param);
   };
 
-  // Handle Styling Of Slideshow Indicators
-
-  const indicators = (index: any) => (
-    <div className="indicators-w">
-      <div
-        className="indicator tiny-rect"
-        onClick={() => handleIndex(index)}
-      ></div>
-    </div>
-  );
+  // Slider settings
+  const settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    arrows: true,
+    beforeChange: (current: number, next: number) => setActive(next),
+  };
 
   const messagesCollectionRef: any = collection(db, "messages");
 
@@ -103,19 +104,14 @@ function Status() {
   return (
     <StyledStatus>
       <div className="carousel">
-        <Slide
-          indicators={indicators}
-          scale={1.4}
-          infinite={false}
-          transitionDuration={500}
-        >
+        <Slider ref={sliderRef} {...settings}>
           {statusByUser
             ?.filter((val: any) => {
               return val.userId === filteredStatuses;
             })
-            ?.map((data: any) => {
+            ?.map((data: any, index: number) => {
               return (
-                <div className="each-slide-effect" key={data.id}>
+                <div className="each-slide-effect relative" key={data.id}>
                   <div
                     style={{ backgroundColor: data.statusColor }}
                     className="tall"
@@ -129,9 +125,33 @@ function Status() {
                           className="avatar"
                           style={{ backgroundImage: `url(${data.userAvt})` }}
                         ></div>
+
                         <div className="col gap-5">
-                          <h4 className="cap">{data.userName}</h4>
-                          <span>Today at {data.realTime}</span>
+                          <span className="cap">{data.userName}</span>
+                          <span className="time">
+                            {formatDistanceToNow(
+                              new Date(data.timestamp.seconds * 1000),
+                              { addSuffix: true }
+                            )}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="indis">
+                        <div className="indicators-w">
+                          {statusByUser
+                            ?.filter(
+                              (val: any) => val.userId === filteredStatuses
+                            )
+                            ?.map((_: any, idx: number) => (
+                              <div
+                                key={idx}
+                                className={`indicator tiny-rect ${
+                                  idx === active ? "active" : ""
+                                }`}
+                                onClick={() => handleIndex(idx)}
+                              />
+                            ))}
                         </div>
                       </div>
 
@@ -184,7 +204,7 @@ function Status() {
                 </div>
               );
             })}
-        </Slide>
+        </Slider>
       </div>
     </StyledStatus>
   );

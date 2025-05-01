@@ -44,10 +44,6 @@ function AllStatuses(props: any) {
     });
   }, []);
 
-  useEffect(() => {
-    console.log(allStatus);
-  }, [allStatus]);
-
   return (
     <StyledAllStatuses theme={theme}>
       <div className="top-part row center gap-1">
@@ -77,17 +73,15 @@ function AllStatuses(props: any) {
               key={data.id}
               onClick={() => handleStatusCard(data.userId, index)}
             >
-              <svg viewBox="0 0 120 120">
-                <circle cx="55" cy="55" r="55" className="" />
-                <foreignObject x="5" y="5" height="100px" width="100px">
-                  <div
-                    className="txt"
-                    style={{ backgroundColor: data.statusColor }}
-                  >
-                    {data.statusText.slice(0, 8)}..
-                  </div>
-                </foreignObject>
-              </svg>
+              <div
+                className="txt"
+                style={{ backgroundColor: data.statusColor }}
+              >
+                <div className="txt-content">
+                  {data.statusText.slice(0, 8).trim().replace(/\s+/g, " ")}
+                </div>
+              </div>
+
               <div className="col gap-5">
                 <h4 style={{ textTransform: "capitalize" }}>{data.userName}</h4>
                 <span>

@@ -45,35 +45,31 @@ export const StyledAllStatuses = styled.div`
 
   .status-card {
     padding: 10px;
-    gap: 0.5rem;
+    gap: 1rem;
     margin: 0.2rem 0;
     cursor: pointer;
 
-    svg {
-      min-width: 100px !important;
-      max-width: 100px;
-    }
-    circle {
-      stroke: rgb(196, 196, 196);
-      stroke-width: 3;
-    }
-    .solid {
-      stroke-dasharray: none;
-    }
-    .dashed {
-      stroke-dasharray: 8, 8.5;
-      padding: 20px;
-    }
-    .dotted {
-      stroke-dasharray: 0.1, 12.5;
-      stroke-linecap: round;
-    }
     .txt {
       color: #fff;
       font-weight: bold;
       text-align: center;
       line-height: 100px;
       border-radius: 50%;
+      width: 80px;
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.5rem;
+    }
+
+    .txt-content {
+      //ellipsis
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      width: 100%;
+      text-align: center;
     }
   }
 

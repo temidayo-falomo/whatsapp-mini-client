@@ -5,18 +5,31 @@ export const StyledStatus = styled.div`
   position: relative;
   overflow: auto;
 
-  .indicators {
+  .top {
+    align-items: center !important;
+  }
+
+  .relative {
+    position: relative;
+  }
+
+  .indis {
     position: absolute;
     top: 1rem;
-    left: 0;
-    right: 0;
-    width: 95%;
     display: flex;
+    margin: 0 auto;
+    transform: translateX(-30%);
+    left: 50%;
   }
 
   .indicators-w {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+
     .indicator {
-      margin: 0 1rem;
+      margin: 0 0.5rem;
       width: 35px;
       height: 2px;
       background: rgba(255, 255, 255, 0.2);
@@ -28,6 +41,16 @@ export const StyledStatus = styled.div`
       border-radius: 10px;
       padding: 4px !important;
       cursor: pointer;
+      transition: all 0.3s ease;
+
+      &.active {
+        background: rgba(255, 255, 255, 0.8);
+        transform: scale(1.1);
+      }
+
+      &:hover {
+        background: rgba(255, 255, 255, 0.4);
+      }
     }
 
     li {
@@ -74,6 +97,16 @@ export const StyledStatus = styled.div`
       background-color: #fff;
       border-radius: 10px;
     }
+  }
+
+  .cap {
+    text-align: left;
+    font-size: 1.2rem;
+  }
+
+  .time {
+    text-align: left;
+    font-size: 0.8rem;
   }
 
   .footer {
@@ -140,6 +173,10 @@ export const StyledStatus = styled.div`
 
     .status-text {
       font-size: 2.3rem !important;
+    }
+
+    .indis {
+      top: -2rem !important;
     }
   }
 `;
